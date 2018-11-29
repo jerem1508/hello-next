@@ -1,13 +1,5 @@
 import { ResponsiveSankey } from '@nivo/sankey'
 
-// la clé 'color' dans les 'nodes' n'est utilisée que pour les liens
-// elle n'est pas obligatoire et dans le cas ci-dessous on pourrait l'enlever
-// sinon c'est la props 'colors' qui est appliquée
-// S'il y a des espaces dans l'id d'un node, le degradé sur les liens n'est pas possible
-// ce qui correspond à mettre la props enableLinkGradient à true
-
-// Problématique qui reste à résoudre
-// 1. Gérer l'ordre des nodes (je ne comprends pas l'ordre par défaut)
 
 const data = {
   "nodes": [

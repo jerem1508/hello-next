@@ -3,25 +3,40 @@ import { ResponsiveBubble } from '@nivo/circle-packing'
 // make sure parent container have a defined height when using responsive component,
 // otherwise height will be 0 and no chart will be rendered.
 // website examples showcase many properties, you'll often use just a few of them.
-const childrenGenerator = (number) => {
+const childrenGenerator = (number, color) => {
   const children = [];
   for (let i = 0; i < number; i++) {
     children.push({
       "name": i.toString(),
-      "loc": 1
+      "loc": i,
+      "color": i % 3 === 0 ? '#fc9550' : color, // no logic here is just to have different color in same child
     })
   }
   return children;
 }
 
+const children1 = childrenGenerator(32, 'blue')
+const children2 = childrenGenerator(8, '#ffd100')
 const mainChildren = childrenGenerator(1200)
 mainChildren[0].children = childrenGenerator(12)
 
 const data = {
-  "children": mainChildren,
-  }
+  "name":"main",
+  "children": [
+    {
+      "name": "children1",
+      "children": children1,
+      "colors": "blue",
+    },
+    {
+      "name": "children2",
+      "children": children2,
+      "color": "yellow",
+    },
+  ],
+};
 
-const smallBubbles = () => (
+const largeBubbles = () => (
     <ResponsiveBubble
         root={data}
         margin={{
@@ -32,12 +47,11 @@ const smallBubbles = () => (
         }}
         identity="name"
         value="loc"
-        colors={['white', 'blue']}
-        colorBy="depth"
+        colorBy={node => node.color}
         enableLabel={false}
-        isInteractive={false}
+        isInteractive={true}
         isZoomable={false}
-        padding={6}
+        padding={15}
         leavesOnly={true}
         labelTextColor="inherit:darker(0.8)"
         borderWidth={2}
@@ -46,4 +60,4 @@ const smallBubbles = () => (
         motionDamping={12}
     />);
 
-export default smallBubbles;
+export default largeBubbles;

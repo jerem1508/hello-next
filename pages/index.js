@@ -1,26 +1,17 @@
 import Layout from '../components/MyLayout.js'
-import Link from 'next/link'
-import Sankey from '../components/Sankey';
-import fetch from 'isomorphic-unfetch'
 
 const Index = (props) => (
   <Layout>
-    <div style={{height: '500px'}}>
-      <p> <strong>Projets</strong> les couleurs de base n'ont pas de sens</p>
-        <Sankey />
-    </div>
+      <h3>Maquettes scanR avec <a href="http://nivo.rocks/">nivo</a> et React</h3>
+      <p>
+        La librairie permet de recouvrir à peu près tous les types de représentations
+        que l'on souhaite faire, sauf le type Carte avec bulles où il faudra trouver une alternative.
+        La librairie est très simple à prendre en main, mais sa personnalisation a des limites.
+        Pour des développeurs peu expérimentés en D3.js ça peut constituer une bonne approche, pourvu
+        qu'on soit flexible sur le rendu final.
+      </p>
   </Layout>
 )
 
-Index.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  const data = await res.json()
-
-  console.log(`Show data fetched. Count: ${data.length}`)
-
-  return {
-    shows: data
-  }
-}
 
 export default Index

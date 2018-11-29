@@ -6,29 +6,29 @@ import { ResponsivePie } from '@nivo/pie'
 // website examples showcase many properties, you'll often use just a few of them.
 const data = [
   {
-    "id": "lisp",
-    "label": "lisp",
-    "value": 214,
+    "id": "recherche",
+    "label": "Structure de recherche",
+    "value": 40,
   },
   {
-    "id": "scala",
-    "label": "scala",
-    "value": 194,
+    "id": "entreprises",
+    "label": "Entreprises",
+    "value": 22,
   },
   {
-    "id": "c",
-    "label": "c",
-    "value": 482,
+    "id": "public",
+    "label": "Secteur public",
+    "value": 20,
   },
   {
-    "id": "javascript",
-    "label": "javascript",
-    "value": 463,
+    "id": "ISBL",
+    "label": "Institutions sans but lucratif",
+    "value": 10,
   },
   {
-    "id": "elixir",
-    "label": "elixir",
-    "value": 259,
+    "id": "OI",
+    "label": "Organisations internationales",
+    "value": 7,
   }
 ]
 
@@ -63,14 +63,14 @@ const Pie = () => (
         motionDamping={15}
         legends={[
             {
-                "anchor": "bottom",
-                "direction": "row",
+                "anchor": "right",
+                "direction": "column",
                 "translateY": 56,
                 "itemWidth": 100,
                 "itemHeight": 18,
                 "itemTextColor": "#999",
                 "symbolSize": 18,
-                "symbolShape": "circle",
+                "symbolShape": "square",
                 "effects": [
                     {
                         "on": "hover",
