@@ -1,6 +1,6 @@
 import Layout from '../components/MyLayout.js'
 
-const Index = (props) => (
+export default () => (
   <Layout>
       <h3>Maquettes scanR avec <a href="http://nivo.rocks/">nivo</a> et React</h3>
       <p>
@@ -12,6 +12,3 @@ const Index = (props) => (
       </p>
   </Layout>
 )
-
-
-export default Index
