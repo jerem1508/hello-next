@@ -1,4 +1,4 @@
-((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/bar.js"],{
+((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/pie.js"],{
 
 /***/ "./components/Header.js":
 /*!******************************!*\
@@ -88,112 +88,10 @@ var Layout = function Layout(props) {
 
 /***/ }),
 
-/***/ "./components/horizontalBubbles.js":
-/*!*****************************************!*\
-  !*** ./components/horizontalBubbles.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _nivo_circle_packing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @nivo/circle-packing */ "./node_modules/@nivo/circle-packing/index.js");
-/* harmony import */ var _nivo_circle_packing__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_nivo_circle_packing__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-var Bubble = function Bubble(props) {
-  console.log('bubble');
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nivo_circle_packing__WEBPACK_IMPORTED_MODULE_1__["ResponsiveBubble"], {
-    root: {
-      "id": "base",
-      "children": [{
-        "id": props.name,
-        "loc": props.loc,
-        "color": "#ffd100"
-      }, {
-        "id": "null",
-        "loc": 100,
-        "color": "white"
-      }]
-    },
-    margin: {
-      "top": 20,
-      "right": 0,
-      "bottom": 20,
-      "left": 0
-    },
-    identity: "id",
-    value: "loc",
-    colorBy: function colorBy(node) {
-      return node.color;
-    },
-    enableLabel: true,
-    isInteractive: true,
-    isZoomable: false,
-    padding: 15,
-    leavesOnly: true,
-    label: function label(node) {
-      return node.id !== "null" ? node.value : '';
-    },
-    labelTextColor: "inherit:darker(1)",
-    borderWidth: 2,
-    animate: true,
-    motionStiffness: 90,
-    motionDamping: 12,
-    tooltip: function tooltip(node) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, node.id !== "null" ? "".concat(node.id, ": ").concat(node.value) : '');
-    }
-  });
-};
-
-var horizontalBubbles = function horizontalBubbles() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      height: "300px",
-      display: "flex"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      width: "200px"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Bubble, {
-    name: "Biologie, m\xE9decine et sant\xE9",
-    loc: 423
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      width: "200px"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Bubble, {
-    name: "Sciences de la soci\xE9t\xE9",
-    loc: 119
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      width: "200px"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Bubble, {
-    name: "Sciences humaines",
-    loc: 43
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      width: "200px"
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Bubble, {
-    name: "Sciences de l'ing\xE9nieur",
-    loc: 38
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (horizontalBubbles);
-
-/***/ }),
-
-/***/ "./components/sectorBar.js":
-/*!*********************************!*\
-  !*** ./components/sectorBar.js ***!
-  \*********************************/
+/***/ "./components/Pie.js":
+/*!***************************!*\
+  !*** ./components/Pie.js ***!
+  \***************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -203,75 +101,85 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _nivo_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nivo/bar */ "./node_modules/@nivo/bar/index.js");
-/* harmony import */ var _nivo_bar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nivo_bar__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _nivo_pie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @nivo/pie */ "./node_modules/@nivo/pie/index.js");
+/* harmony import */ var _nivo_pie__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_nivo_pie__WEBPACK_IMPORTED_MODULE_2__);
 
 
+ // make sure parent container have a defined height when using responsive component,
+// otherwise height will be 0 and no chart will be rendered.
+// website examples showcase many properties, you'll often use just a few of them.
 
 var data = [{
-  "secteur": "7219Z Recherche développement",
-  "nombre": 121
+  "id": "recherche",
+  "label": "Structure de recherche",
+  "value": 40
 }, {
-  "secteur": "7211Z Recherche développement",
-  "nombre": 96
+  "id": "entreprises",
+  "label": "Entreprises",
+  "value": 22
 }, {
-  "secteur": "8542Z Enseignement supérieur",
-  "nombre": 87
+  "id": "public",
+  "label": "Secteur public",
+  "value": 20
 }, {
-  "secteur": "85424Z Enseignement supérieur",
-  "nombre": 80
+  "id": "ISBL",
+  "label": "Institutions sans but lucratif",
+  "value": 10
 }, {
-  "secteur": "85425Z Enseignement supérieur",
-  "nombre": 74
-}, {
-  "secteur": "85423Z Enseignement supérieur",
-  "nombre": 64
-}, {
-  "secteur": "85042Z Enseignement supérieur",
-  "nombre": 60
-}, {
-  "secteur": "80542Z Enseignement supérieur",
-  "nombre": 55
-}, {
-  "secteur": "81542Z Enseignement supérieur",
-  "nombre": 48
+  "id": "OI",
+  "label": "Organisations internationales",
+  "value": 7
 }];
 
-var sectorBar = function sectorBar() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nivo_bar__WEBPACK_IMPORTED_MODULE_2__["ResponsiveBar"], {
+var Pie = function Pie() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nivo_pie__WEBPACK_IMPORTED_MODULE_2__["ResponsivePie"], {
     data: data,
-    borderRadius: 20,
-    keys: ["nombre"],
-    indexBy: "secteur",
     margin: {
-      "top": 50,
-      "right": 130,
-      "bottom": 50,
-      "left": 60
+      "top": 40,
+      "right": 80,
+      "bottom": 80,
+      "left": 80
     },
-    padding: 0.3,
-    colors: ['#ffd100'],
-    enableGridY: false,
-    borderColor: "inherit:darker(1.6)",
-    axisTop: null,
-    axisRight: null,
-    axisBottom: null,
-    axisLeft: null,
-    labelSkipWidth: 12,
-    labelSkipHeight: 12,
-    labelTextColor: "inherit:darker(1.6)",
-    layout: "horizontal",
+    innerRadius: 0.5,
+    padAngle: 0.7,
+    cornerRadius: 3,
+    colors: "nivo",
+    colorBy: "id",
+    borderWidth: 1,
+    borderColor: "inherit:darker(0.2)",
+    radialLabelsSkipAngle: 10,
+    radialLabelsTextXOffset: 6,
+    radialLabelsTextColor: "#333333",
+    radialLabelsLinkOffset: 0,
+    radialLabelsLinkDiagonalLength: 16,
+    radialLabelsLinkHorizontalLength: 24,
+    radialLabelsLinkStrokeWidth: 1,
+    radialLabelsLinkColor: "inherit",
+    slicesLabelsSkipAngle: 10,
+    slicesLabelsTextColor: "#333333",
     animate: true,
     motionStiffness: 90,
     motionDamping: 15,
-    tooltip: function tooltip(_ref) {
-      var data = _ref.data;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "".concat(data.secteur, ": ").concat(data.nombre));
-    }
+    legends: [{
+      "anchor": "right",
+      "direction": "column",
+      "translateY": 56,
+      "itemWidth": 100,
+      "itemHeight": 18,
+      "itemTextColor": "#999",
+      "symbolSize": 18,
+      "symbolShape": "square",
+      "effects": [{
+        "on": "hover",
+        "style": {
+          "itemTextColor": "#000"
+        }
+      }]
+    }]
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (sectorBar);
+/* harmony default export */ __webpack_exports__["default"] = (Pie);
 
 /***/ }),
 
@@ -963,3170 +871,6 @@ module.exports = _typeof;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime-module.js");
-
-
-/***/ }),
-
-/***/ "./node_modules/@nivo/axes/cjs/nivo-axes.js":
-/*!**************************************************!*\
-  !*** ./node_modules/@nivo/axes/cjs/nivo-axes.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var isNumber = _interopDefault(__webpack_require__(/*! lodash/isNumber */ "./node_modules/lodash/isNumber.js"));
-var isArray = _interopDefault(__webpack_require__(/*! lodash/isArray */ "./node_modules/lodash/isArray.js"));
-var isFunction = _interopDefault(__webpack_require__(/*! lodash/isFunction */ "./node_modules/lodash/isFunction.js"));
-var d3TimeFormat = __webpack_require__(/*! d3-time-format */ "./node_modules/d3-time-format/src/index.js");
-var d3Format = __webpack_require__(/*! d3-format */ "./node_modules/d3-format/src/index.js");
-var core = __webpack_require__(/*! @nivo/core */ "./node_modules/@nivo/core/index.js");
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
-var compose = _interopDefault(__webpack_require__(/*! recompose/compose */ "./node_modules/recompose/compose.js"));
-var withPropsOnChange = _interopDefault(__webpack_require__(/*! recompose/withPropsOnChange */ "./node_modules/recompose/withPropsOnChange.js"));
-var pure = _interopDefault(__webpack_require__(/*! recompose/pure */ "./node_modules/recompose/pure.js"));
-var setDisplayName = _interopDefault(__webpack_require__(/*! recompose/setDisplayName */ "./node_modules/recompose/setDisplayName.js"));
-var reactMotion = __webpack_require__(/*! react-motion */ "./node_modules/react-motion/lib/react-motion.js");
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
-
-var centerScale = function centerScale(scale) {
-    var bandwidth = scale.bandwidth();
-
-    if (bandwidth === 0) return scale;
-
-    var offset = bandwidth / 2;
-    if (scale.round()) {
-        offset = Math.round(offset);
-    }
-
-    return function (d) {
-        return scale(d) + offset;
-    };
-};
-
-var getScaleTicks = function getScaleTicks(scale, tickCount) {
-    if (scale.ticks) return scale.ticks(tickCount);
-    return scale.domain();
-};
-
-var computeCartesianTicks = function computeCartesianTicks(_ref) {
-    var axis = _ref.axis,
-        scale = _ref.scale,
-        ticksPosition = _ref.ticksPosition,
-        _tickValues = _ref.tickValues,
-        tickSize = _ref.tickSize,
-        tickPadding = _ref.tickPadding,
-        tickRotation = _ref.tickRotation,
-        _ref$engine = _ref.engine,
-        engine = _ref$engine === undefined ? 'svg' : _ref$engine;
-
-    var tickValues = isArray(_tickValues) ? _tickValues : undefined;
-    var tickCount = isNumber(_tickValues) ? _tickValues : undefined;
-
-    var values = tickValues || getScaleTicks(scale, tickCount);
-
-    var textProps = core.textPropsByEngine[engine];
-
-    var position = scale.bandwidth ? centerScale(scale) : scale;
-    var line = { lineX: 0, lineY: 0 };
-    var text = { textX: 0, textY: 0 };
-
-    var translate = void 0;
-    var textAlign = textProps.align.center;
-    var textBaseline = textProps.baseline.center;
-
-    if (axis === 'x') {
-        translate = function translate(d) {
-            return { x: position(d), y: 0 };
-        };
-
-        line.lineY = tickSize * (ticksPosition === 'after' ? 1 : -1);
-        text.textY = (tickSize + tickPadding) * (ticksPosition === 'after' ? 1 : -1);
-
-        if (ticksPosition === 'after') {
-            textBaseline = textProps.baseline.top;
-        } else {
-            textBaseline = textProps.baseline.bottom;
-        }
-
-        if (tickRotation === 0) {
-            textAlign = textProps.align.center;
-        } else if (ticksPosition === 'after' && tickRotation < 0 || ticksPosition === 'before' && tickRotation > 0) {
-            textAlign = textProps.align.right;
-            textBaseline = textProps.baseline.center;
-        } else if (ticksPosition === 'after' && tickRotation > 0 || ticksPosition === 'before' && tickRotation < 0) {
-            textAlign = textProps.align.left;
-            textBaseline = textProps.baseline.center;
-        }
-    } else {
-        translate = function translate(d) {
-            return { x: 0, y: position(d) };
-        };
-
-        line.lineX = tickSize * (ticksPosition === 'after' ? 1 : -1);
-        text.textX = (tickSize + tickPadding) * (ticksPosition === 'after' ? 1 : -1);
-
-        if (ticksPosition === 'after') {
-            textAlign = textProps.align.left;
-        } else {
-            textAlign = textProps.align.right;
-        }
-    }
-
-    var ticks = values.map(function (value) {
-        return _extends({
-            key: value,
-            value: value
-        }, translate(value), line, text);
-    });
-
-    return {
-        ticks: ticks,
-        textAlign: textAlign,
-        textBaseline: textBaseline
-    };
-};
-
-var getFormatter = function getFormatter(format, scale) {
-    if (!format || isFunction(format)) return format;
-
-    if (scale.type === 'time') {
-        var f = d3TimeFormat.timeFormat(format);
-        return function (d) {
-            return f(new Date(d));
-        };
-    }
-
-    return d3Format.format(format);
-};
-
-var AxisTick = function (_PureComponent) {
-    inherits(AxisTick, _PureComponent);
-
-    function AxisTick() {
-        classCallCheck(this, AxisTick);
-        return possibleConstructorReturn(this, _PureComponent.apply(this, arguments));
-    }
-
-    AxisTick.prototype.render = function render() {
-        var _props = this.props,
-            _value = _props.value,
-            x = _props.x,
-            y = _props.y,
-            opacity = _props.opacity,
-            rotate = _props.rotate,
-            format = _props.format,
-            lineX = _props.lineX,
-            lineY = _props.lineY,
-            _onClick = _props.onClick,
-            textX = _props.textX,
-            textY = _props.textY,
-            textBaseline = _props.textBaseline,
-            textAnchor = _props.textAnchor,
-            theme = _props.theme;
-
-
-        var value = _value;
-        if (format !== undefined) {
-            value = format(value);
-        }
-
-        var gStyle = { opacity: opacity };
-        if (_onClick) {
-            gStyle['cursor'] = 'pointer';
-        }
-
-        return React__default.createElement(
-            'g',
-            _extends({
-                transform: 'translate(' + x + ',' + y + ')'
-            }, _onClick ? { onClick: function onClick(e) {
-                    return _onClick(e, value);
-                } } : {}, {
-                style: gStyle
-            }),
-            React__default.createElement('line', { x1: 0, x2: lineX, y1: 0, y2: lineY, style: theme.axis.ticks.line }),
-            React__default.createElement(
-                'text',
-                {
-                    alignmentBaseline: textBaseline,
-                    textAnchor: textAnchor,
-                    transform: 'translate(' + textX + ',' + textY + ') rotate(' + rotate + ')',
-                    style: theme.axis.ticks.text
-                },
-                value
-            )
-        );
-    };
-
-    return AxisTick;
-}(React.PureComponent);
-
-AxisTick.propTypes = {
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
-    format: PropTypes.func,
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    lineX: PropTypes.number.isRequired,
-    lineY: PropTypes.number.isRequired,
-    textX: PropTypes.number.isRequired,
-    textY: PropTypes.number.isRequired,
-    textBaseline: PropTypes.string.isRequired,
-    textAnchor: PropTypes.string.isRequired,
-    opacity: PropTypes.number.isRequired,
-    rotate: PropTypes.number.isRequired,
-    onClick: PropTypes.func,
-    theme: PropTypes.shape({
-        axis: core.axisThemePropType.isRequired
-    }).isRequired
-};
-AxisTick.defaultProps = {
-    opacity: 1,
-    rotate: 0
-};
-
-var willEnter = function willEnter() {
-    return {
-        rotate: 0,
-        opacity: 0,
-        x: 0,
-        y: 0
-    };
-};
-
-var willLeave = function willLeave(springConfig) {
-    return function (_ref) {
-        var _ref$style = _ref.style,
-            x = _ref$style.x,
-            y = _ref$style.y,
-            rotate = _ref$style.rotate;
-        return {
-            rotate: rotate,
-            opacity: reactMotion.spring(0, springConfig),
-            x: reactMotion.spring(x.val, springConfig),
-            y: reactMotion.spring(y.val, springConfig)
-        };
-    };
-};
-
-var defaultTickRenderer = function defaultTickRenderer(props) {
-    return React__default.createElement(AxisTick, props);
-};
-
-var Axis = function (_Component) {
-    inherits(Axis, _Component);
-
-    function Axis() {
-        classCallCheck(this, Axis);
-        return possibleConstructorReturn(this, _Component.apply(this, arguments));
-    }
-
-    Axis.prototype.render = function render() {
-        var _props = this.props,
-            axis = _props.axis,
-            scale = _props.scale,
-            x = _props.x,
-            y = _props.y,
-            length = _props.length,
-            ticksPosition = _props.ticksPosition,
-            tickValues = _props.tickValues,
-            tickSize = _props.tickSize,
-            tickPadding = _props.tickPadding,
-            tickRotation = _props.tickRotation,
-            format = _props.format,
-            renderTick = _props.renderTick,
-            legend = _props.legend,
-            legendPosition = _props.legendPosition,
-            legendOffset = _props.legendOffset,
-            theme = _props.theme,
-            animate = _props.animate,
-            motionStiffness = _props.motionStiffness,
-            motionDamping = _props.motionDamping,
-            onClick = _props.onClick;
-
-        var _computeCartesianTick = computeCartesianTicks({
-            axis: axis,
-            scale: scale,
-            ticksPosition: ticksPosition,
-            tickValues: tickValues,
-            tickSize: tickSize,
-            tickPadding: tickPadding,
-            tickRotation: tickRotation
-        }),
-            ticks = _computeCartesianTick.ticks,
-            textAlign = _computeCartesianTick.textAlign,
-            textBaseline = _computeCartesianTick.textBaseline;
-
-        var legendNode = null;
-        if (legend !== undefined) {
-            var legendX = 0;
-            var legendY = 0;
-            var legendRotation = 0;
-            var textAnchor = void 0;
-
-            if (axis === 'y') {
-                legendRotation = -90;
-                legendX = legendOffset;
-                if (legendPosition === 'start') {
-                    textAnchor = 'start';
-                    legendY = length;
-                } else if (legendPosition === 'middle') {
-                    textAnchor = 'middle';
-                    legendY = length / 2;
-                } else if (legendPosition === 'end') {
-                    textAnchor = 'end';
-                }
-            } else {
-                legendY = legendOffset;
-                if (legendPosition === 'start') {
-                    textAnchor = 'start';
-                } else if (legendPosition === 'middle') {
-                    textAnchor = 'middle';
-                    legendX = length / 2;
-                } else if (legendPosition === 'end') {
-                    textAnchor = 'end';
-                    legendX = length;
-                }
-            }
-
-            legendNode = React__default.createElement(
-                'text',
-                {
-                    transform: 'translate(' + legendX + ', ' + legendY + ') rotate(' + legendRotation + ')',
-                    textAnchor: textAnchor,
-                    style: _extends({
-                        alignmentBaseline: 'middle'
-                    }, theme.axis.legend.text)
-                },
-                legend
-            );
-        }
-
-        if (animate !== true) {
-            return React__default.createElement(
-                'g',
-                { transform: 'translate(' + x + ',' + y + ')' },
-                ticks.map(function (tick, tickIndex) {
-                    return renderTick(_extends({
-                        tickIndex: tickIndex,
-                        format: format,
-                        rotate: tickRotation,
-                        textBaseline: textBaseline,
-                        textAnchor: textAlign,
-                        theme: theme
-                    }, tick, onClick ? { onClick: onClick } : {}));
-                }),
-                React__default.createElement('line', {
-                    style: theme.axis.domain.line,
-                    x1: 0,
-                    x2: axis === 'x' ? length : 0,
-                    y1: 0,
-                    y2: axis === 'x' ? 0 : length
-                }),
-                legendNode
-            );
-        }
-
-        var springConfig = {
-            stiffness: motionStiffness,
-            damping: motionDamping
-        };
-
-        return React__default.createElement(
-            reactMotion.Motion,
-            { style: { x: reactMotion.spring(x, springConfig), y: reactMotion.spring(y, springConfig) } },
-            function (xy) {
-                return React__default.createElement(
-                    'g',
-                    { transform: 'translate(' + xy.x + ',' + xy.y + ')' },
-                    React__default.createElement(
-                        reactMotion.TransitionMotion,
-                        {
-                            willEnter: willEnter,
-                            willLeave: willLeave(springConfig),
-                            styles: ticks.map(function (tick) {
-                                return {
-                                    key: '' + tick.key,
-                                    data: tick,
-                                    style: {
-                                        opacity: reactMotion.spring(1, springConfig),
-                                        x: reactMotion.spring(tick.x, springConfig),
-                                        y: reactMotion.spring(tick.y, springConfig),
-                                        rotate: reactMotion.spring(tickRotation, springConfig)
-                                    }
-                                };
-                            })
-                        },
-                        function (interpolatedStyles) {
-                            return React__default.createElement(
-                                React.Fragment,
-                                null,
-                                interpolatedStyles.map(function (_ref2, tickIndex) {
-                                    var style = _ref2.style,
-                                        tick = _ref2.data;
-                                    return renderTick(_extends({
-                                        tickIndex: tickIndex,
-                                        format: format,
-                                        textBaseline: textBaseline,
-                                        textAnchor: textAlign,
-                                        theme: theme
-                                    }, tick, style, onClick ? { onClick: onClick } : {}));
-                                })
-                            );
-                        }
-                    ),
-                    React__default.createElement(
-                        reactMotion.Motion,
-                        {
-                            style: {
-                                x2: reactMotion.spring(axis === 'x' ? length : 0, springConfig),
-                                y2: reactMotion.spring(axis === 'x' ? 0 : length, springConfig)
-                            }
-                        },
-                        function (values) {
-                            return React__default.createElement('line', _extends({ style: theme.axis.domain.line, x1: 0, y1: 0 }, values));
-                        }
-                    ),
-                    legendNode
-                );
-            }
-        );
-    };
-
-    return Axis;
-}(React.Component);
-
-Axis.propTypes = _extends({
-    axis: PropTypes.oneOf(['x', 'y']).isRequired,
-    scale: PropTypes.func.isRequired,
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    length: PropTypes.number.isRequired,
-    ticksPosition: PropTypes.oneOf(['before', 'after']).isRequired,
-    tickValues: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.instanceOf(Date)]))]),
-    tickSize: PropTypes.number.isRequired,
-    tickPadding: PropTypes.number.isRequired,
-    tickRotation: PropTypes.number.isRequired,
-    tickFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    renderTick: PropTypes.func.isRequired,
-    legend: PropTypes.node,
-    legendPosition: PropTypes.oneOf(['start', 'middle', 'end']).isRequired,
-    legendOffset: PropTypes.number.isRequired,
-    theme: PropTypes.shape({
-        axis: core.axisThemePropType.isRequired
-    }).isRequired
-}, core.motionPropTypes);
-Axis.defaultProps = {
-    x: 0,
-    y: 0,
-    tickSize: 5,
-    tickPadding: 5,
-    tickRotation: 0,
-    renderTick: defaultTickRenderer,
-    legendPosition: 'end',
-    legendOffset: 0
-};
-
-
-var enhance = compose(core.withMotion(), withPropsOnChange(['format', 'scale'], function (_ref3) {
-    var format = _ref3.format,
-        scale = _ref3.scale;
-    return {
-        format: getFormatter(format, scale)
-    };
-}), pure);
-
-var Axis$1 = setDisplayName('Axis')(enhance(Axis));
-
-var axisPropTypes = {
-    ticksPosition: PropTypes.oneOf(['before', 'after']),
-    tickValues: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.instanceOf(Date)]))]),
-    tickSize: PropTypes.number,
-    tickPadding: PropTypes.number,
-    tickRotation: PropTypes.number,
-    format: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    renderTick: PropTypes.func,
-    legend: PropTypes.node,
-    legendPosition: PropTypes.oneOf(['start', 'middle', 'end']),
-    legendOffset: PropTypes.number
-};
-
-var axisPropType = PropTypes.shape(axisPropTypes);
-
-var positions = ['top', 'right', 'bottom', 'left'];
-
-var Axes = function (_PureComponent) {
-    inherits(Axes, _PureComponent);
-
-    function Axes() {
-        classCallCheck(this, Axes);
-        return possibleConstructorReturn(this, _PureComponent.apply(this, arguments));
-    }
-
-    Axes.prototype.render = function render() {
-        var _props = this.props,
-            xScale = _props.xScale,
-            yScale = _props.yScale,
-            width = _props.width,
-            height = _props.height,
-            top = _props.top,
-            right = _props.right,
-            bottom = _props.bottom,
-            left = _props.left,
-            theme = _props.theme,
-            animate = _props.animate,
-            motionStiffness = _props.motionStiffness,
-            motionDamping = _props.motionDamping;
-
-
-        var axes = { top: top, right: right, bottom: bottom, left: left };
-
-        return React__default.createElement(
-            React.Fragment,
-            null,
-            positions.map(function (position) {
-                var axis = axes[position];
-
-                if (!axis) return null;
-
-                var isXAxis = position === 'top' || position === 'bottom';
-                var ticksPosition = position === 'top' || position === 'left' ? 'before' : 'after';
-
-                return React__default.createElement(Axis$1, _extends({
-                    key: position
-                }, axis, {
-                    axis: isXAxis ? 'x' : 'y',
-                    x: position === 'right' ? width : 0,
-                    y: position === 'bottom' ? height : 0,
-                    scale: isXAxis ? xScale : yScale,
-                    length: isXAxis ? width : height,
-                    ticksPosition: ticksPosition,
-                    theme: theme,
-                    animate: animate,
-                    motionDamping: motionDamping,
-                    motionStiffness: motionStiffness
-                }));
-            })
-        );
-    };
-
-    return Axes;
-}(React.PureComponent);
-
-Axes.propTypes = _extends({
-    xScale: PropTypes.func.isRequired,
-    yScale: PropTypes.func.isRequired,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    top: axisPropType,
-    right: axisPropType,
-    bottom: axisPropType,
-    left: axisPropType,
-    theme: PropTypes.shape({
-        axis: core.axisThemePropType.isRequired
-    }).isRequired
-}, core.motionPropTypes);
-
-var degreesToRadians = function degreesToRadians(degrees) {
-  return degrees * Math.PI / 180;
-};
-
-var renderAxisToCanvas = function renderAxisToCanvas(ctx, _ref) {
-    var axis = _ref.axis,
-        scale = _ref.scale,
-        _ref$x = _ref.x,
-        x = _ref$x === undefined ? 0 : _ref$x,
-        _ref$y = _ref.y,
-        y = _ref$y === undefined ? 0 : _ref$y,
-        length = _ref.length,
-        ticksPosition = _ref.ticksPosition,
-        tickValues = _ref.tickValues,
-        _ref$tickSize = _ref.tickSize,
-        tickSize = _ref$tickSize === undefined ? 5 : _ref$tickSize,
-        _ref$tickPadding = _ref.tickPadding,
-        tickPadding = _ref$tickPadding === undefined ? 5 : _ref$tickPadding,
-        _ref$tickRotation = _ref.tickRotation,
-        tickRotation = _ref$tickRotation === undefined ? 0 : _ref$tickRotation,
-        format = _ref.format,
-        theme = _ref.theme;
-
-    var _computeCartesianTick = computeCartesianTicks({
-        axis: axis,
-        scale: scale,
-        ticksPosition: ticksPosition,
-        tickValues: tickValues,
-        tickSize: tickSize,
-        tickPadding: tickPadding,
-        tickRotation: tickRotation,
-        engine: 'canvas'
-    }),
-        ticks = _computeCartesianTick.ticks,
-        textAlign = _computeCartesianTick.textAlign,
-        textBaseline = _computeCartesianTick.textBaseline;
-
-    ctx.save();
-    ctx.translate(x, y);
-
-    ctx.textAlign = textAlign;
-    ctx.textBaseline = textBaseline;
-    ctx.font = theme.axis.ticks.text.fontSize + 'px sans-serif';
-
-    ctx.lineWidth = theme.axis.domain.line.strokeWidth;
-    ctx.lineCap = 'square';
-    ctx.strokeStyle = theme.axis.domain.line.stroke;
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(axis === 'x' ? length : 0, axis === 'x' ? 0 : length);
-    ctx.stroke();
-
-    ticks.forEach(function (tick) {
-        ctx.lineWidth = theme.axis.ticks.line.strokeWidth;
-        ctx.lineCap = 'square';
-        ctx.strokeStyle = theme.axis.ticks.line.stroke;
-        ctx.beginPath();
-        ctx.moveTo(tick.x, tick.y);
-        ctx.lineTo(tick.x + tick.lineX, tick.y + tick.lineY);
-        ctx.stroke();
-
-        var value = format !== undefined ? format(tick.value) : tick.value;
-
-        ctx.save();
-        ctx.translate(tick.x + tick.textX, tick.y + tick.textY);
-        ctx.rotate(degreesToRadians(tickRotation));
-        ctx.fillStyle = theme.axis.ticks.text.fill;
-        ctx.fillText(value, 0, 0);
-        ctx.restore();
-    });
-
-    ctx.restore();
-};
-
-var positions$1 = ['top', 'right', 'bottom', 'left'];
-
-var renderAxesToCanvas = function renderAxesToCanvas(ctx, _ref2) {
-    var xScale = _ref2.xScale,
-        yScale = _ref2.yScale,
-        width = _ref2.width,
-        height = _ref2.height,
-        top = _ref2.top,
-        right = _ref2.right,
-        bottom = _ref2.bottom,
-        left = _ref2.left,
-        theme = _ref2.theme;
-
-    var axes = { top: top, right: right, bottom: bottom, left: left };
-
-    positions$1.forEach(function (position) {
-        var axis = axes[position];
-
-        if (!axis) return null;
-
-        var isXAxis = position === 'top' || position === 'bottom';
-        var ticksPosition = position === 'top' || position === 'left' ? 'before' : 'after';
-        var scale = isXAxis ? xScale : yScale;
-        var format = getFormatter(axis.format, scale);
-
-        renderAxisToCanvas(ctx, _extends({}, axis, {
-            axis: isXAxis ? 'x' : 'y',
-            x: position === 'right' ? width : 0,
-            y: position === 'bottom' ? height : 0,
-            scale: scale,
-            format: format,
-            length: isXAxis ? width : height,
-            ticksPosition: ticksPosition,
-            theme: theme
-        }));
-    });
-};
-
-exports.Axes = Axes;
-exports.Axis = Axis$1;
-exports.renderAxisToCanvas = renderAxisToCanvas;
-exports.renderAxesToCanvas = renderAxesToCanvas;
-exports.axisPropTypes = axisPropTypes;
-exports.axisPropType = axisPropType;
-
-
-/***/ }),
-
-/***/ "./node_modules/@nivo/axes/index.js":
-/*!******************************************!*\
-  !*** ./node_modules/@nivo/axes/index.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./cjs/nivo-axes */ "./node_modules/@nivo/axes/cjs/nivo-axes.js")
-
-
-/***/ }),
-
-/***/ "./node_modules/@nivo/bar/cjs/nivo-bar.js":
-/*!************************************************!*\
-  !*** ./node_modules/@nivo/bar/cjs/nivo-bar.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var d3Scale = __webpack_require__(/*! d3-scale */ "./node_modules/d3-scale/src/index.js");
-var min = _interopDefault(__webpack_require__(/*! lodash/min */ "./node_modules/lodash/min.js"));
-var max = _interopDefault(__webpack_require__(/*! lodash/max */ "./node_modules/lodash/max.js"));
-var range = _interopDefault(__webpack_require__(/*! lodash/range */ "./node_modules/lodash/range.js"));
-var flattenDepth = _interopDefault(__webpack_require__(/*! lodash/flattenDepth */ "./node_modules/lodash/flattenDepth.js"));
-var d3Shape = __webpack_require__(/*! d3-shape */ "./node_modules/d3-shape/src/index.js");
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
-var compose = _interopDefault(__webpack_require__(/*! recompose/compose */ "./node_modules/recompose/compose.js"));
-var withPropsOnChange = _interopDefault(__webpack_require__(/*! recompose/withPropsOnChange */ "./node_modules/recompose/withPropsOnChange.js"));
-var pure = _interopDefault(__webpack_require__(/*! recompose/pure */ "./node_modules/recompose/pure.js"));
-var core = __webpack_require__(/*! @nivo/core */ "./node_modules/@nivo/core/index.js");
-var axes = __webpack_require__(/*! @nivo/axes */ "./node_modules/@nivo/axes/index.js");
-var legends = __webpack_require__(/*! @nivo/legends */ "./node_modules/@nivo/legends/index.js");
-var defaultProps = _interopDefault(__webpack_require__(/*! recompose/defaultProps */ "./node_modules/recompose/defaultProps.js"));
-var reactMotion = __webpack_require__(/*! react-motion */ "./node_modules/react-motion/lib/react-motion.js");
-var setDisplayName = _interopDefault(__webpack_require__(/*! recompose/setDisplayName */ "./node_modules/recompose/setDisplayName.js"));
-
-/**
- * Generates indexed scale.
- *
- * @param {Array.<Object>} data
- * @param {Function}       getIndex
- * @param {Array.<number>} range
- * @param {number}         padding
- * @returns {Function}
- */
-var getIndexedScale = function getIndexedScale(data, getIndex, range$$1, padding) {
-  return d3Scale.scaleBand().rangeRound(range$$1).domain(data.map(getIndex)).padding(padding);
-};
-
-/**
- * Generates scale for grouped bar chart.
- *
- * @param {Array.<Object>} data
- * @param {Array.<string>} keys
- * @param {number}         _minValue
- * @param {number|string}  _maxValue
- * @param {Array.<number>} range
- * @returns {Function}
- */
-var getGroupedScale = function getGroupedScale(data, keys, _minValue, _maxValue, range$$1) {
-    var allValues = data.reduce(function (acc, entry) {
-        return [].concat(acc, keys.map(function (k) {
-            return entry[k];
-        }));
-    }, []);
-
-    var maxValue = _maxValue;
-    if (maxValue === 'auto') {
-        maxValue = max(allValues);
-    }
-
-    var minValue = _minValue;
-    if (minValue === 'auto') {
-        minValue = min(allValues);
-        if (minValue > 0) minValue = 0;
-    }
-
-    return d3Scale.scaleLinear().rangeRound(range$$1).domain([minValue, maxValue]);
-};
-
-/**
- * Generates x/y scales & bars for vertical grouped bar chart.
- *
- * @param {Array.<Object>} data
- * @param {Function}       getIndex
- * @param {Array.<string>} keys
- * @param {number}         minValue
- * @param {number}         maxValue
- * @param {boolean}        reverse
- * @param {number}         width
- * @param {number}         height
- * @param {Function}       getColor
- * @param {number}         [padding=0]
- * @param {number}         [innerPadding=0]
- * @return {{ xScale: Function, yScale: Function, bars: Array.<Object> }}
- */
-var generateVerticalGroupedBars = function generateVerticalGroupedBars(_ref) {
-    var data = _ref.data,
-        getIndex = _ref.getIndex,
-        keys = _ref.keys,
-        minValue = _ref.minValue,
-        maxValue = _ref.maxValue,
-        reverse = _ref.reverse,
-        width = _ref.width,
-        height = _ref.height,
-        getColor = _ref.getColor,
-        _ref$padding = _ref.padding,
-        padding = _ref$padding === undefined ? 0 : _ref$padding,
-        _ref$innerPadding = _ref.innerPadding,
-        innerPadding = _ref$innerPadding === undefined ? 0 : _ref$innerPadding;
-
-    var xScale = getIndexedScale(data, getIndex, [0, width], padding);
-    var yRange = reverse ? [0, height] : [height, 0];
-    var yScale = getGroupedScale(data, keys, minValue, maxValue, yRange);
-
-    var barWidth = (xScale.bandwidth() - innerPadding * (keys.length - 1)) / keys.length;
-    var yRef = yScale(0);
-
-    var getY = function getY(d) {
-        return d > 0 ? yScale(d) : yRef;
-    };
-    var getHeight = function getHeight(d, y) {
-        return d > 0 ? yRef - y : yScale(d) - yRef;
-    };
-    if (reverse) {
-        getY = function getY(d) {
-            return d < 0 ? yScale(d) : yRef;
-        };
-        getHeight = function getHeight(d, y) {
-            return d < 0 ? yRef - y : yScale(d) - yRef;
-        };
-    }
-
-    var bars = [];
-    if (barWidth > 0) {
-        keys.forEach(function (key, i) {
-            range(xScale.domain().length).forEach(function (index) {
-                var x = xScale(getIndex(data[index])) + barWidth * i + innerPadding * i;
-                var y = getY(data[index][key]);
-                var barHeight = getHeight(data[index][key], y);
-
-                if (barWidth > 0 && barHeight > 0) {
-                    var barData = {
-                        id: key,
-                        value: data[index][key],
-                        index: index,
-                        indexValue: getIndex(data[index]),
-                        data: data[index]
-                    };
-
-                    bars.push({
-                        key: key + '.' + barData.indexValue,
-                        data: barData,
-                        x: x,
-                        y: y,
-                        width: barWidth,
-                        height: barHeight,
-                        color: getColor(barData)
-                    });
-                }
-            });
-        });
-    }
-
-    return { xScale: xScale, yScale: yScale, bars: bars };
-};
-
-/**
- * Generates x/y scales & bars for horizontal grouped bar chart.
- *
- * @param {Array.<Object>} data
- * @param {Function}       getIndex
- * @param {Array.<string>} keys
- * @param {number}         minValue
- * @param {number}         maxValue
- * @param {boolean}        reverse
- * @param {number}         width
- * @param {number}         height
- * @param {Function}       getColor
- * @param {number}         [padding=0]
- * @param {number}         [innerPadding=0]
- * @return {{ xScale: Function, yScale: Function, bars: Array.<Object> }}
- */
-var generateHorizontalGroupedBars = function generateHorizontalGroupedBars(_ref2) {
-    var data = _ref2.data,
-        getIndex = _ref2.getIndex,
-        keys = _ref2.keys,
-        minValue = _ref2.minValue,
-        maxValue = _ref2.maxValue,
-        reverse = _ref2.reverse,
-        width = _ref2.width,
-        height = _ref2.height,
-        getColor = _ref2.getColor,
-        _ref2$padding = _ref2.padding,
-        padding = _ref2$padding === undefined ? 0 : _ref2$padding,
-        _ref2$innerPadding = _ref2.innerPadding,
-        innerPadding = _ref2$innerPadding === undefined ? 0 : _ref2$innerPadding;
-
-    var xRange = reverse ? [width, 0] : [0, width];
-    var xScale = getGroupedScale(data, keys, minValue, maxValue, xRange);
-    var yScale = getIndexedScale(data, getIndex, [height, 0], padding);
-
-    var barHeight = (yScale.bandwidth() - innerPadding * (keys.length - 1)) / keys.length;
-    var xRef = xScale(0);
-
-    var getX = function getX(d) {
-        return d > 0 ? xRef : xScale(d);
-    };
-    var getWidth = function getWidth(d, x) {
-        return d > 0 ? xScale(d) - xRef : xRef - x;
-    };
-    if (reverse) {
-        getX = function getX(d) {
-            return d < 0 ? xRef : xScale(d);
-        };
-        getWidth = function getWidth(d, x) {
-            return d < 0 ? xScale(d) - xRef : xRef - x;
-        };
-    }
-
-    var bars = [];
-    if (barHeight > 0) {
-        keys.forEach(function (key, i) {
-            range(yScale.domain().length).forEach(function (index) {
-                var x = getX(data[index][key]);
-                var y = yScale(getIndex(data[index])) + barHeight * i + innerPadding * i;
-                var barWidth = getWidth(data[index][key], x);
-
-                if (barWidth > 0) {
-                    var barData = {
-                        id: key,
-                        value: data[index][key],
-                        index: index,
-                        indexValue: getIndex(data[index]),
-                        data: data[index]
-                    };
-
-                    bars.push({
-                        key: key + '.' + barData.indexValue,
-                        data: barData,
-                        x: x,
-                        y: y,
-                        width: barWidth,
-                        height: barHeight,
-                        color: getColor(barData)
-                    });
-                }
-            });
-        });
-    }
-
-    return { xScale: xScale, yScale: yScale, bars: bars };
-};
-
-/**
- * Generates x/y scales & bars for grouped bar chart.
- *
- * @param {Object} options
- * @return {{ xScale: Function, yScale: Function, bars: Array.<Object> }}
- */
-var generateGroupedBars = function generateGroupedBars(options) {
-    return options.layout === 'vertical' ? generateVerticalGroupedBars(options) : generateHorizontalGroupedBars(options);
-};
-
-/**
- * Generates scale for stacked bar chart.
- *
- * @param {Array.<Object>} data
- * @param {number|string}  _minValue
- * @param {number|string}  _maxValue
- * @param {Array.<number>} range
- * @returns {Function}
- */
-var getStackedScale = function getStackedScale(data, _minValue, _maxValue, range$$1) {
-    var allValues = flattenDepth(data, 2);
-
-    var minValue = _minValue;
-    if (minValue === 'auto') {
-        minValue = min(allValues);
-    }
-
-    var maxValue = _maxValue;
-    if (maxValue === 'auto') {
-        maxValue = max(allValues);
-    }
-
-    return d3Scale.scaleLinear().rangeRound(range$$1).domain([minValue, maxValue]);
-};
-
-/**
- * Generates x/y scales & bars for vertical stacked bar chart.
- *
- * @param {Array.<Object>} data
- * @param {Function}       getIndex
- * @param {Array.<string>} keys
- * @param {number}         minValue
- * @param {number}         maxValue
- * @param {boolean}        reverse
- * @param {number}         width
- * @param {number}         height
- * @param {Function}       getColor
- * @param {number}         [padding=0]
- * @param {number}         [innerPadding=0]
- * @return {{ xScale: Function, yScale: Function, bars: Array.<Object> }}
- */
-var generateVerticalStackedBars = function generateVerticalStackedBars(_ref) {
-    var data = _ref.data,
-        getIndex = _ref.getIndex,
-        keys = _ref.keys,
-        minValue = _ref.minValue,
-        maxValue = _ref.maxValue,
-        reverse = _ref.reverse,
-        width = _ref.width,
-        height = _ref.height,
-        getColor = _ref.getColor,
-        _ref$padding = _ref.padding,
-        padding = _ref$padding === undefined ? 0 : _ref$padding,
-        _ref$innerPadding = _ref.innerPadding,
-        innerPadding = _ref$innerPadding === undefined ? 0 : _ref$innerPadding;
-
-    var stackedData = d3Shape.stack().keys(keys).offset(d3Shape.stackOffsetDiverging)(data);
-
-    var xScale = getIndexedScale(data, getIndex, [0, width], padding);
-    var yRange = reverse ? [0, height] : [height, 0];
-    var yScale = getStackedScale(stackedData, minValue, maxValue, yRange);
-
-    var bars = [];
-    var barWidth = xScale.bandwidth();
-
-    var getY = function getY(d) {
-        return yScale(d[1]);
-    };
-    var getHeight = function getHeight(d, y) {
-        return yScale(d[0]) - y;
-    };
-    if (reverse) {
-        getY = function getY(d) {
-            return yScale(d[0]);
-        };
-        getHeight = function getHeight(d, y) {
-            return yScale(d[1]) - y;
-        };
-    }
-
-    if (barWidth > 0) {
-        stackedData.forEach(function (stackedDataItem) {
-            xScale.domain().forEach(function (index, i) {
-                var d = stackedDataItem[i];
-                var x = xScale(getIndex(d.data));
-
-                var y = getY(d);
-                var barHeight = getHeight(d, y);
-                if (innerPadding > 0) {
-                    y += innerPadding * 0.5;
-                    barHeight -= innerPadding;
-                }
-
-                if (barHeight > 0) {
-                    var barData = {
-                        id: stackedDataItem.key,
-                        value: d.data[stackedDataItem.key],
-                        index: i,
-                        indexValue: index,
-                        data: d.data
-                    };
-
-                    bars.push({
-                        key: stackedDataItem.key + '.' + index,
-                        data: barData,
-                        x: x,
-                        y: y,
-                        width: barWidth,
-                        height: barHeight,
-                        color: getColor(barData)
-                    });
-                }
-            });
-        });
-    }
-
-    return { xScale: xScale, yScale: yScale, bars: bars };
-};
-
-/**
- * Generates x/y scales & bars for horizontal stacked bar chart.
- *
- * @param {Array.<Object>} data
- * @param {Function}       getIndex
- * @param {Array.<string>} keys
- * @param {number}         minValue
- * @param {number}         maxValue
- * @param {boolean}        reverse
- * @param {number}         width
- * @param {number}         height
- * @param {Function}       getColor
- * @param {number}         [padding=0]
- * @param {number}         [innerPadding=0]
- * @return {{ xScale: Function, yScale: Function, bars: Array.<Object> }}
- */
-var generateHorizontalStackedBars = function generateHorizontalStackedBars(_ref2) {
-    var data = _ref2.data,
-        getIndex = _ref2.getIndex,
-        keys = _ref2.keys,
-        minValue = _ref2.minValue,
-        maxValue = _ref2.maxValue,
-        reverse = _ref2.reverse,
-        width = _ref2.width,
-        height = _ref2.height,
-        getColor = _ref2.getColor,
-        _ref2$padding = _ref2.padding,
-        padding = _ref2$padding === undefined ? 0 : _ref2$padding,
-        _ref2$innerPadding = _ref2.innerPadding,
-        innerPadding = _ref2$innerPadding === undefined ? 0 : _ref2$innerPadding;
-
-    var stackedData = d3Shape.stack().keys(keys).offset(d3Shape.stackOffsetDiverging)(data);
-
-    var xRange = reverse ? [width, 0] : [0, width];
-    var xScale = getStackedScale(stackedData, minValue, maxValue, xRange);
-    var yScale = getIndexedScale(data, getIndex, [height, 0], padding);
-
-    var bars = [];
-    var barHeight = yScale.bandwidth();
-
-    var getX = function getX(d) {
-        return xScale(d[0]);
-    };
-    var getWidth = function getWidth(d, x) {
-        return xScale(d[1]) - x;
-    };
-    if (reverse) {
-        getX = function getX(d) {
-            return xScale(d[1]);
-        };
-        getWidth = function getWidth(d, y) {
-            return xScale(d[0]) - y;
-        };
-    }
-
-    if (barHeight > 0) {
-        stackedData.forEach(function (stackedDataItem) {
-            yScale.domain().forEach(function (index, i) {
-                var d = stackedDataItem[i];
-                var y = yScale(getIndex(d.data));
-
-                var barData = {
-                    id: stackedDataItem.key,
-                    value: d.data[stackedDataItem.key],
-                    index: i,
-                    indexValue: index,
-                    data: d.data
-                };
-
-                var x = getX(d);
-                var barWidth = getWidth(d, x);
-                if (innerPadding > 0) {
-                    x += innerPadding * 0.5;
-                    barWidth -= innerPadding;
-                }
-
-                if (barWidth > 0) {
-                    bars.push({
-                        key: stackedDataItem.key + '.' + index,
-                        data: barData,
-                        x: x,
-                        y: y,
-                        width: barWidth,
-                        height: barHeight,
-                        color: getColor(barData)
-                    });
-                }
-            });
-        });
-    }
-
-    return { xScale: xScale, yScale: yScale, bars: bars };
-};
-
-/**
- * Generates x/y scales & bars for stacked bar chart.
- *
- * @param {Object} options
- * @return {{ xScale: Function, yScale: Function, bars: Array.<Object> }}
- */
-var generateStackedBars = function generateStackedBars(options) {
-    return options.layout === 'vertical' ? generateVerticalStackedBars(options) : generateHorizontalStackedBars(options);
-};
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
-
-var BarItem = function BarItem(_ref) {
-    var data = _ref.data,
-        x = _ref.x,
-        y = _ref.y,
-        width = _ref.width,
-        height = _ref.height,
-        borderRadius = _ref.borderRadius,
-        color = _ref.color,
-        borderWidth = _ref.borderWidth,
-        borderColor = _ref.borderColor,
-        label = _ref.label,
-        shouldRenderLabel = _ref.shouldRenderLabel,
-        labelColor = _ref.labelColor,
-        showTooltip = _ref.showTooltip,
-        hideTooltip = _ref.hideTooltip,
-        onClick = _ref.onClick,
-        onMouseEnter = _ref.onMouseEnter,
-        onMouseLeave = _ref.onMouseLeave,
-        tooltip = _ref.tooltip,
-        theme = _ref.theme;
-
-    var handleTooltip = function handleTooltip(e) {
-        return showTooltip(tooltip, e);
-    };
-    var handleMouseEnter = function handleMouseEnter(e) {
-        onMouseEnter(data, e);
-        showTooltip(tooltip, e);
-    };
-    var handleMouseLeave = function handleMouseLeave(e) {
-        onMouseLeave(data, e);
-        hideTooltip(e);
-    };
-
-    return React__default.createElement(
-        'g',
-        { transform: 'translate(' + x + ', ' + y + ')' },
-        React__default.createElement('rect', {
-            width: width,
-            height: height,
-            rx: borderRadius,
-            ry: borderRadius,
-            fill: data.fill ? data.fill : color,
-            strokeWidth: borderWidth,
-            stroke: borderColor,
-            onMouseEnter: handleMouseEnter,
-            onMouseMove: handleTooltip,
-            onMouseLeave: handleMouseLeave,
-            onClick: onClick
-        }),
-        shouldRenderLabel && React__default.createElement(
-            'text',
-            {
-                x: width / 2,
-                y: height / 2,
-                textAnchor: 'middle',
-                alignmentBaseline: 'central',
-                style: _extends({}, theme.labels.text, {
-                    pointerEvents: 'none',
-                    fill: labelColor
-                })
-            },
-            label
-        )
-    );
-};
-
-BarItem.propTypes = {
-    data: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        value: PropTypes.number.isRequired,
-        indexValue: PropTypes.string.isRequired
-    }).isRequired,
-
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    color: PropTypes.string.isRequired,
-    borderRadius: PropTypes.number.isRequired,
-    borderWidth: PropTypes.number.isRequired,
-    borderColor: PropTypes.string.isRequired,
-
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    shouldRenderLabel: PropTypes.bool.isRequired,
-    labelColor: PropTypes.string.isRequired,
-
-    showTooltip: PropTypes.func.isRequired,
-    hideTooltip: PropTypes.func.isRequired,
-    getTooltipLabel: PropTypes.func.isRequired,
-    tooltipFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    onClick: PropTypes.func,
-    onMouseEnter: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-    tooltip: PropTypes.element.isRequired,
-
-    theme: PropTypes.shape({
-        tooltip: PropTypes.shape({}).isRequired
-    }).isRequired
-};
-
-var enhance = compose(withPropsOnChange(['data', 'color', 'onClick'], function (_ref2) {
-    var data = _ref2.data,
-        color = _ref2.color,
-        _onClick = _ref2.onClick;
-    return {
-        onClick: function onClick(event) {
-            return _onClick(_extends({ color: color }, data), event);
-        }
-    };
-}), withPropsOnChange(['data', 'color', 'theme', 'tooltip', 'getTooltipLabel', 'tooltipFormat'], function (_ref3) {
-    var data = _ref3.data,
-        color = _ref3.color,
-        theme = _ref3.theme,
-        tooltip = _ref3.tooltip,
-        getTooltipLabel = _ref3.getTooltipLabel,
-        tooltipFormat = _ref3.tooltipFormat;
-    return {
-        tooltip: React__default.createElement(core.BasicTooltip, {
-            id: getTooltipLabel(data),
-            value: data.value,
-            enableChip: true,
-            color: color,
-            theme: theme,
-            format: tooltipFormat,
-            renderContent: typeof tooltip === 'function' ? tooltip.bind(null, _extends({ color: color, theme: theme }, data)) : null
-        })
-    };
-}), pure);
-
-var BarItem$1 = enhance(BarItem);
-
-var BarPropTypes = _extends({
-    data: PropTypes.arrayOf(PropTypes.object).isRequired,
-    indexBy: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    getIndex: PropTypes.func.isRequired, // computed
-    keys: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
-    layers: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.oneOf(['grid', 'axes', 'bars', 'markers', 'legends']), PropTypes.func])).isRequired,
-
-    groupMode: PropTypes.oneOf(['stacked', 'grouped']).isRequired,
-    layout: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
-    reverse: PropTypes.bool.isRequired,
-
-    minValue: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]).isRequired,
-    maxValue: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]).isRequired,
-    padding: PropTypes.number.isRequired,
-    innerPadding: PropTypes.number.isRequired,
-
-    axisTop: axes.axisPropType,
-    axisRight: axes.axisPropType,
-    axisBottom: axes.axisPropType,
-    axisLeft: axes.axisPropType,
-    enableGridX: PropTypes.bool.isRequired,
-    enableGridY: PropTypes.bool.isRequired,
-    gridXValues: PropTypes.arrayOf(PropTypes.number),
-    gridYValues: PropTypes.arrayOf(PropTypes.number),
-
-    barComponent: PropTypes.func.isRequired,
-
-    enableLabel: PropTypes.bool.isRequired,
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    labelFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    getLabel: PropTypes.func.isRequired, // computed
-    labelSkipWidth: PropTypes.number.isRequired,
-    labelSkipHeight: PropTypes.number.isRequired,
-    labelTextColor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    getLabelTextColor: PropTypes.func.isRequired, // computed
-    labelLinkColor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    getLabelLinkColor: PropTypes.func.isRequired, // computed
-
-    borderRadius: PropTypes.number.isRequired,
-    getColor: PropTypes.func.isRequired }, core.defsPropTypes, {
-    borderWidth: PropTypes.number.isRequired,
-    borderColor: PropTypes.any.isRequired,
-    getBorderColor: PropTypes.func.isRequired,
-
-    isInteractive: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
-    onMouseEnter: PropTypes.func.isRequired,
-    onMouseLeave: PropTypes.func.isRequired,
-    tooltipLabel: PropTypes.func,
-    getTooltipLabel: PropTypes.func.isRequired,
-    tooltipFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    tooltip: PropTypes.func,
-
-    legends: PropTypes.arrayOf(PropTypes.shape(_extends({
-        dataFrom: PropTypes.oneOf(['indexes', 'keys']).isRequired
-    }, legends.LegendPropShape))).isRequired,
-
-    // canvas specific
-    pixelRatio: PropTypes.number.isRequired
-});
-
-var BarDefaultProps = {
-    indexBy: 'id',
-    keys: ['value'],
-    layers: ['grid', 'axes', 'bars', 'markers', 'legends'],
-
-    groupMode: 'stacked',
-    layout: 'vertical',
-    reverse: false,
-
-    minValue: 'auto',
-    maxValue: 'auto',
-    padding: 0.1,
-    innerPadding: 0,
-
-    axisBottom: {},
-    axisLeft: {},
-    enableGridX: false,
-    enableGridY: true,
-
-    barComponent: BarItem$1,
-
-    enableLabel: true,
-    label: 'value',
-    labelSkipWidth: 0,
-    labelSkipHeight: 0,
-    labelLinkColor: 'theme',
-    labelTextColor: 'theme',
-
-    defs: [],
-    fill: [],
-    borderRadius: 0,
-    borderWidth: 0,
-    borderColor: 'inherit',
-
-    isInteractive: true,
-    onClick: core.noop,
-    onMouseEnter: core.noop,
-    onMouseLeave: core.noop,
-
-    legends: [],
-
-    // canvas specific
-    pixelRatio: global.window && global.window.devicePixelRatio ? global.window.devicePixelRatio : 1
-};
-
-var enhance$1 = (function (Component) {
-    return compose(defaultProps(BarDefaultProps), core.withTheme(), core.withColors(), core.withDimensions(), core.withMotion(), withPropsOnChange(['indexBy'], function (_ref) {
-        var indexBy = _ref.indexBy;
-        return {
-            getIndex: core.getAccessorFor(indexBy)
-        };
-    }), withPropsOnChange(['labelTextColor'], function (_ref2) {
-        var labelTextColor = _ref2.labelTextColor;
-        return {
-            getLabelTextColor: core.getInheritedColorGenerator(labelTextColor, 'axis.ticks.text.fill')
-        };
-    }), withPropsOnChange(['labelLinkColor'], function (_ref3) {
-        var labelLinkColor = _ref3.labelLinkColor;
-        return {
-            getLabelLinkColor: core.getInheritedColorGenerator(labelLinkColor, 'axis.ticks.line.stroke')
-        };
-    }), withPropsOnChange(['label', 'labelFormat'], function (_ref4) {
-        var label = _ref4.label,
-            labelFormat = _ref4.labelFormat;
-        return {
-            getLabel: core.getLabelGenerator(label, labelFormat)
-        };
-    }), withPropsOnChange(['borderColor'], function (_ref5) {
-        var borderColor = _ref5.borderColor;
-        return {
-            getBorderColor: core.getInheritedColorGenerator(borderColor)
-        };
-    }), withPropsOnChange(['tooltipLabel'], function (_ref6) {
-        var tooltipLabel = _ref6.tooltipLabel;
-
-        var getTooltipLabel = function getTooltipLabel(d) {
-            return d.id + ' - ' + d.indexValue;
-        };
-        if (typeof tooltipLabel === 'function') {
-            getTooltipLabel = tooltipLabel;
-        }
-
-        return { getTooltipLabel: getTooltipLabel };
-    }), pure)(Component);
-});
-
-var barWillEnterHorizontal = function barWillEnterHorizontal(_ref) {
-    var style = _ref.style;
-    return {
-        x: style.x.val,
-        y: style.y.val,
-        width: 0,
-        height: style.height.val
-    };
-};
-
-var barWillEnterVertical = function barWillEnterVertical(_ref2) {
-    var style = _ref2.style;
-    return {
-        x: style.x.val,
-        y: style.y.val + style.height.val,
-        width: style.width.val,
-        height: 0
-    };
-};
-
-var barWillLeaveHorizontal = function barWillLeaveHorizontal(springConfig) {
-    return function (_ref3) {
-        var style = _ref3.style;
-        return {
-            x: style.x,
-            y: style.y,
-            width: reactMotion.spring(0, springConfig),
-            height: style.height
-        };
-    };
-};
-
-var barWillLeaveVertical = function barWillLeaveVertical(springConfig) {
-    return function (_ref4) {
-        var style = _ref4.style;
-        return {
-            x: style.x,
-            y: reactMotion.spring(style.y.val + style.height.val, springConfig),
-            width: style.width,
-            height: reactMotion.spring(0, springConfig)
-        };
-    };
-};
-
-var Bar = function Bar(props) {
-    var data = props.data,
-        getIndex = props.getIndex,
-        keys = props.keys,
-        groupMode = props.groupMode,
-        layout = props.layout,
-        reverse = props.reverse,
-        minValue = props.minValue,
-        maxValue = props.maxValue,
-        margin = props.margin,
-        width = props.width,
-        height = props.height,
-        outerWidth = props.outerWidth,
-        outerHeight = props.outerHeight,
-        padding = props.padding,
-        innerPadding = props.innerPadding,
-        axisTop = props.axisTop,
-        axisRight = props.axisRight,
-        axisBottom = props.axisBottom,
-        axisLeft = props.axisLeft,
-        enableGridX = props.enableGridX,
-        enableGridY = props.enableGridY,
-        gridXValues = props.gridXValues,
-        gridYValues = props.gridYValues,
-        layers = props.layers,
-        barComponent = props.barComponent,
-        enableLabel = props.enableLabel,
-        getLabel = props.getLabel,
-        labelSkipWidth = props.labelSkipWidth,
-        labelSkipHeight = props.labelSkipHeight,
-        getLabelTextColor = props.getLabelTextColor,
-        markers = props.markers,
-        theme = props.theme,
-        getColor = props.getColor,
-        defs = props.defs,
-        fill = props.fill,
-        borderRadius = props.borderRadius,
-        borderWidth = props.borderWidth,
-        getBorderColor = props.getBorderColor,
-        animate = props.animate,
-        motionStiffness = props.motionStiffness,
-        motionDamping = props.motionDamping,
-        isInteractive = props.isInteractive,
-        getTooltipLabel = props.getTooltipLabel,
-        tooltipFormat = props.tooltipFormat,
-        tooltip = props.tooltip,
-        onClick = props.onClick,
-        onMouseEnter = props.onMouseEnter,
-        onMouseLeave = props.onMouseLeave,
-        legends$$1 = props.legends;
-
-    var options = {
-        layout: layout,
-        reverse: reverse,
-        data: data,
-        getIndex: getIndex,
-        keys: keys,
-        minValue: minValue,
-        maxValue: maxValue,
-        width: width,
-        height: height,
-        getColor: getColor,
-        padding: padding,
-        innerPadding: innerPadding
-    };
-    var result = groupMode === 'grouped' ? generateGroupedBars(options) : generateStackedBars(options);
-
-    var motionProps = {
-        animate: animate,
-        motionDamping: motionDamping,
-        motionStiffness: motionStiffness
-    };
-
-    var springConfig = {
-        damping: motionDamping,
-        stiffness: motionStiffness
-    };
-
-    var willEnter = layout === 'vertical' ? barWillEnterVertical : barWillEnterHorizontal;
-    var willLeave = layout === 'vertical' ? barWillLeaveVertical(springConfig) : barWillLeaveHorizontal(springConfig);
-
-    var shouldRenderLabel = function shouldRenderLabel(_ref5) {
-        var width = _ref5.width,
-            height = _ref5.height;
-
-        if (!enableLabel) return false;
-        if (labelSkipWidth > 0 && width < labelSkipWidth) return false;
-        if (labelSkipHeight > 0 && height < labelSkipHeight) return false;
-        return true;
-    };
-
-    var boundDefs = core.bindDefs(defs, result.bars, fill, {
-        dataKey: 'data',
-        targetKey: 'data.fill'
-    });
-
-    var legendDataForKeys = result.bars.filter(function (bar) {
-        return bar.data.index === 0;
-    }).map(function (bar) {
-        return {
-            id: bar.data.id,
-            label: bar.data.id,
-            color: bar.color,
-            fill: bar.data.fill
-        };
-    }).reverse();
-
-    var legendDataForIndexes = result.bars.filter(function (bar) {
-        return bar.data.id === keys[0];
-    }).map(function (bar) {
-        return {
-            id: bar.data.indexValue,
-            label: bar.data.indexValue,
-            color: bar.color,
-            fill: bar.data.fill
-        };
-    });
-
-    return React__default.createElement(
-        core.Container,
-        { isInteractive: isInteractive, theme: theme },
-        function (_ref6) {
-            var showTooltip = _ref6.showTooltip,
-                hideTooltip = _ref6.hideTooltip;
-
-            var commonProps = {
-                borderRadius: borderRadius,
-                borderWidth: borderWidth,
-                enableLabel: enableLabel,
-                labelSkipWidth: labelSkipWidth,
-                labelSkipHeight: labelSkipHeight,
-                showTooltip: showTooltip,
-                hideTooltip: hideTooltip,
-                onClick: onClick,
-                onMouseEnter: onMouseEnter,
-                onMouseLeave: onMouseLeave,
-                theme: theme,
-                getTooltipLabel: getTooltipLabel,
-                tooltipFormat: tooltipFormat,
-                tooltip: tooltip
-            };
-
-            var bars = void 0;
-            if (animate === true) {
-                bars = React__default.createElement(
-                    reactMotion.TransitionMotion,
-                    {
-                        key: 'bars',
-                        willEnter: willEnter,
-                        willLeave: willLeave,
-                        styles: result.bars.map(function (bar) {
-                            return {
-                                key: bar.key,
-                                data: bar,
-                                style: {
-                                    x: reactMotion.spring(bar.x, springConfig),
-                                    y: reactMotion.spring(bar.y, springConfig),
-                                    width: reactMotion.spring(bar.width, springConfig),
-                                    height: reactMotion.spring(bar.height, springConfig)
-                                }
-                            };
-                        })
-                    },
-                    function (interpolatedStyles) {
-                        return React__default.createElement(
-                            'g',
-                            null,
-                            interpolatedStyles.map(function (_ref7) {
-                                var key = _ref7.key,
-                                    style = _ref7.style,
-                                    bar = _ref7.data;
-
-                                var baseProps = _extends({}, bar, style);
-
-                                return React__default.createElement(barComponent, _extends({
-                                    key: key
-                                }, baseProps, commonProps, {
-                                    shouldRenderLabel: shouldRenderLabel(baseProps),
-                                    width: Math.max(style.width, 0),
-                                    height: Math.max(style.height, 0),
-                                    label: getLabel(bar.data),
-                                    labelColor: getLabelTextColor(baseProps, theme),
-                                    borderColor: getBorderColor(baseProps),
-                                    theme: theme
-                                }));
-                            })
-                        );
-                    }
-                );
-            } else {
-                bars = result.bars.map(function (d) {
-                    return React__default.createElement(barComponent, _extends({
-                        key: d.key
-                    }, d, commonProps, {
-                        label: getLabel(d.data),
-                        shouldRenderLabel: shouldRenderLabel(d),
-                        labelColor: getLabelTextColor(d, theme),
-                        borderColor: getBorderColor(d),
-                        theme: theme
-                    }));
-                });
-            }
-
-            var layerById = {
-                grid: React__default.createElement(core.Grid, _extends({
-                    key: 'grid',
-                    theme: theme,
-                    width: width,
-                    height: height,
-                    xScale: enableGridX ? result.xScale : null,
-                    yScale: enableGridY ? result.yScale : null,
-                    xValues: gridXValues,
-                    yValues: gridYValues
-                }, motionProps)),
-                axes: React__default.createElement(axes.Axes, _extends({
-                    key: 'axes',
-                    xScale: result.xScale,
-                    yScale: result.yScale,
-                    width: width,
-                    height: height,
-                    theme: theme,
-                    top: axisTop,
-                    right: axisRight,
-                    bottom: axisBottom,
-                    left: axisLeft
-                }, motionProps)),
-                bars: bars,
-                markers: React__default.createElement(core.CartesianMarkers, {
-                    key: 'markers',
-                    markers: markers,
-                    width: width,
-                    height: height,
-                    xScale: result.xScale,
-                    yScale: result.yScale,
-                    theme: theme
-                }),
-                legends: legends$$1.map(function (legend, i) {
-                    var legendData = void 0;
-                    if (legend.dataFrom === 'keys') {
-                        legendData = legendDataForKeys;
-                    } else if (legend.dataFrom === 'indexes') {
-                        legendData = legendDataForIndexes;
-                    }
-
-                    if (legendData === undefined) return null;
-
-                    return React__default.createElement(legends.BoxLegendSvg, _extends({
-                        key: i
-                    }, legend, {
-                        containerWidth: width,
-                        containerHeight: height,
-                        data: legendData,
-                        theme: theme
-                    }));
-                })
-            };
-
-            return React__default.createElement(
-                core.SvgWrapper,
-                {
-                    width: outerWidth,
-                    height: outerHeight,
-                    margin: margin,
-                    defs: boundDefs,
-                    theme: theme
-                },
-                layers.map(function (layer, i) {
-                    if (typeof layer === 'function') {
-                        return React__default.createElement(
-                            React.Fragment,
-                            { key: i },
-                            layer(_extends({}, props, result))
-                        );
-                    }
-                    return layerById[layer];
-                })
-            );
-        }
-    );
-};
-
-Bar.propTypes = BarPropTypes;
-
-var Bar$1 = setDisplayName('Bar')(enhance$1(Bar));
-
-var findNodeUnderCursor = function findNodeUnderCursor(nodes, margin, x, y) {
-    return nodes.find(function (node) {
-        return core.isCursorInRect(node.x + margin.left, node.y + margin.top, node.width, node.height, x, y);
-    });
-};
-
-var BarCanvas = function (_Component) {
-    inherits(BarCanvas, _Component);
-
-    function BarCanvas() {
-        var _temp, _this, _ret;
-
-        classCallCheck(this, BarCanvas);
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleMouseHover = function (showTooltip, hideTooltip) {
-            return function (event) {
-                if (!_this.bars) return;
-
-                var _this$props = _this.props,
-                    margin = _this$props.margin,
-                    theme = _this$props.theme,
-                    tooltip = _this$props.tooltip,
-                    getTooltipLabel = _this$props.getTooltipLabel,
-                    tooltipFormat = _this$props.tooltipFormat;
-
-                var _getRelativeCursor = core.getRelativeCursor(_this.surface, event),
-                    x = _getRelativeCursor[0],
-                    y = _getRelativeCursor[1];
-
-                var bar = findNodeUnderCursor(_this.bars, margin, x, y);
-
-                if (bar !== undefined) {
-                    showTooltip(React__default.createElement(core.BasicTooltip, {
-                        id: getTooltipLabel(bar.data),
-                        value: bar.data.value,
-                        enableChip: true,
-                        color: bar.color,
-                        theme: theme,
-                        format: tooltipFormat,
-                        renderContent: typeof tooltip === 'function' ? tooltip.bind(null, _extends({ color: bar.color }, bar.data)) : null
-                    }), event);
-                } else {
-                    hideTooltip();
-                }
-            };
-        }, _this.handleMouseLeave = function (hideTooltip) {
-            return function () {
-                hideTooltip();
-            };
-        }, _this.handleClick = function (event) {
-            if (!_this.bars) return;
-
-            var _this$props2 = _this.props,
-                margin = _this$props2.margin,
-                onClick = _this$props2.onClick;
-
-            var _getRelativeCursor2 = core.getRelativeCursor(_this.surface, event),
-                x = _getRelativeCursor2[0],
-                y = _getRelativeCursor2[1];
-
-            var node = findNodeUnderCursor(_this.bars, margin, x, y);
-            if (node !== undefined) onClick(node.data, event);
-        }, _temp), possibleConstructorReturn(_this, _ret);
-    }
-
-    BarCanvas.prototype.componentDidMount = function componentDidMount() {
-        this.ctx = this.surface.getContext('2d');
-        this.draw(this.props);
-    };
-
-    BarCanvas.prototype.shouldComponentUpdate = function shouldComponentUpdate(props) {
-        if (this.props.outerWidth !== props.outerWidth || this.props.outerHeight !== props.outerHeight || this.props.isInteractive !== props.isInteractive || this.props.theme !== props.theme) {
-            return true;
-        } else {
-            this.draw(props);
-            return false;
-        }
-    };
-
-    BarCanvas.prototype.componentDidUpdate = function componentDidUpdate() {
-        this.ctx = this.surface.getContext('2d');
-        this.draw(this.props);
-    };
-
-    BarCanvas.prototype.draw = function draw(props) {
-        var _this2 = this;
-
-        var data = props.data,
-            keys = props.keys,
-            getIndex = props.getIndex,
-            minValue = props.minValue,
-            maxValue = props.maxValue,
-            width = props.width,
-            height = props.height,
-            outerWidth = props.outerWidth,
-            outerHeight = props.outerHeight,
-            pixelRatio = props.pixelRatio,
-            margin = props.margin,
-            layout = props.layout,
-            reverse = props.reverse,
-            groupMode = props.groupMode,
-            padding = props.padding,
-            innerPadding = props.innerPadding,
-            axisTop = props.axisTop,
-            axisRight = props.axisRight,
-            axisBottom = props.axisBottom,
-            axisLeft = props.axisLeft,
-            theme = props.theme,
-            getColor = props.getColor,
-            legends$$1 = props.legends,
-            enableGridX = props.enableGridX,
-            enableGridY = props.enableGridY;
-
-
-        this.surface.width = outerWidth * pixelRatio;
-        this.surface.height = outerHeight * pixelRatio;
-
-        this.ctx.scale(pixelRatio, pixelRatio);
-
-        var options = {
-            layout: layout,
-            reverse: reverse,
-            data: data,
-            getIndex: getIndex,
-            keys: keys,
-            minValue: minValue,
-            maxValue: maxValue,
-            width: width,
-            height: height,
-            getColor: getColor,
-            padding: padding,
-            innerPadding: innerPadding
-        };
-
-        var result = groupMode === 'grouped' ? generateGroupedBars(options) : generateStackedBars(options);
-
-        this.bars = result.bars;
-
-        this.ctx.fillStyle = theme.background;
-        this.ctx.fillRect(0, 0, outerWidth, outerHeight);
-        this.ctx.translate(margin.left, margin.top);
-
-        this.ctx.strokeStyle = '#dddddd';
-        enableGridX && core.renderGridLinesToCanvas(this.ctx, {
-            width: width,
-            height: height,
-            scale: result.xScale,
-            axis: 'x'
-        });
-        enableGridY && core.renderGridLinesToCanvas(this.ctx, {
-            width: width,
-            height: height,
-            scale: result.yScale,
-            axis: 'y'
-        });
-
-        this.ctx.strokeStyle = '#dddddd';
-        var legendDataForKeys = result.bars.filter(function (bar) {
-            return bar.data.index === 0;
-        }).map(function (bar) {
-            return {
-                id: bar.data.id,
-                label: bar.data.id,
-                color: bar.color,
-                fill: bar.data.fill
-            };
-        }).reverse();
-        var legendDataForIndexes = result.bars.filter(function (bar) {
-            return bar.data.id === keys[0];
-        }).map(function (bar) {
-            return {
-                id: bar.data.indexValue,
-                label: bar.data.indexValue,
-                color: bar.color,
-                fill: bar.data.fill
-            };
-        });
-
-        legends$$1.forEach(function (legend) {
-            var legendData = void 0;
-            if (legend.dataFrom === 'keys') {
-                legendData = legendDataForKeys;
-            } else if (legend.dataFrom === 'indexes') {
-                legendData = legendDataForIndexes;
-            }
-
-            if (legendData === undefined) return null;
-            legends.renderLegendToCanvas(_this2.ctx, _extends({}, legend, {
-                data: legendData,
-                containerWidth: width,
-                containerHeight: height,
-                itemTextColor: '#999',
-                symbolSize: 16
-            }));
-        });
-
-        core.renderAxesToCanvas(this.ctx, {
-            xScale: result.xScale,
-            yScale: result.yScale,
-            width: width,
-            height: height,
-            top: axisTop,
-            right: axisRight,
-            bottom: axisBottom,
-            left: axisLeft,
-            theme: theme
-        });
-
-        result.bars.forEach(function (_ref) {
-            var x = _ref.x,
-                y = _ref.y,
-                color = _ref.color,
-                width = _ref.width,
-                height = _ref.height;
-
-            _this2.ctx.fillStyle = color;
-            _this2.ctx.fillRect(x, y, width, height);
-        });
-    };
-
-    BarCanvas.prototype.render = function render() {
-        var _this3 = this;
-
-        var _props = this.props,
-            outerWidth = _props.outerWidth,
-            outerHeight = _props.outerHeight,
-            pixelRatio = _props.pixelRatio,
-            isInteractive = _props.isInteractive,
-            theme = _props.theme;
-
-
-        return React__default.createElement(
-            core.Container,
-            { isInteractive: isInteractive, theme: theme },
-            function (_ref2) {
-                var showTooltip = _ref2.showTooltip,
-                    hideTooltip = _ref2.hideTooltip;
-                return React__default.createElement('canvas', {
-                    ref: function ref(surface) {
-                        _this3.surface = surface;
-                    },
-                    width: outerWidth * pixelRatio,
-                    height: outerHeight * pixelRatio,
-                    style: {
-                        width: outerWidth,
-                        height: outerHeight
-                    },
-                    onMouseEnter: _this3.handleMouseHover(showTooltip, hideTooltip),
-                    onMouseMove: _this3.handleMouseHover(showTooltip, hideTooltip),
-                    onMouseLeave: _this3.handleMouseLeave(hideTooltip),
-                    onClick: _this3.handleClick
-                });
-            }
-        );
-    };
-
-    return BarCanvas;
-}(React.Component);
-
-BarCanvas.propTypes = BarPropTypes;
-
-var BarCanvas$1 = setDisplayName('BarCanvas')(enhance$1(BarCanvas));
-
-var ResponsiveBar = function ResponsiveBar(props) {
-    return React__default.createElement(
-        core.ResponsiveWrapper,
-        null,
-        function (_ref) {
-            var width = _ref.width,
-                height = _ref.height;
-            return React__default.createElement(Bar$1, _extends({ width: width, height: height }, props));
-        }
-    );
-};
-
-var ResponsiveBarCanvas = function ResponsiveBarCanvas(props) {
-    return React__default.createElement(
-        core.ResponsiveWrapper,
-        null,
-        function (_ref) {
-            var width = _ref.width,
-                height = _ref.height;
-            return React__default.createElement(BarCanvas$1, _extends({ width: width, height: height }, props));
-        }
-    );
-};
-
-exports.Bar = Bar$1;
-exports.BarCanvas = BarCanvas$1;
-exports.ResponsiveBar = ResponsiveBar;
-exports.ResponsiveBarCanvas = ResponsiveBarCanvas;
-exports.BarPropTypes = BarPropTypes;
-exports.BarDefaultProps = BarDefaultProps;
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/@nivo/bar/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/@nivo/bar/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./cjs/nivo-bar */ "./node_modules/@nivo/bar/cjs/nivo-bar.js")
-
-
-/***/ }),
-
-/***/ "./node_modules/@nivo/circle-packing/cjs/nivo-circle-packing.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@nivo/circle-packing/cjs/nivo-circle-packing.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
-var core = __webpack_require__(/*! @nivo/core */ "./node_modules/@nivo/core/index.js");
-var d3Hierarchy = __webpack_require__(/*! d3-hierarchy */ "./node_modules/d3-hierarchy/src/index.js");
-var compose = _interopDefault(__webpack_require__(/*! recompose/compose */ "./node_modules/recompose/compose.js"));
-var defaultProps = _interopDefault(__webpack_require__(/*! recompose/defaultProps */ "./node_modules/recompose/defaultProps.js"));
-var withPropsOnChange = _interopDefault(__webpack_require__(/*! recompose/withPropsOnChange */ "./node_modules/recompose/withPropsOnChange.js"));
-var withStateHandlers = _interopDefault(__webpack_require__(/*! recompose/withStateHandlers */ "./node_modules/recompose/withStateHandlers.js"));
-var pure = _interopDefault(__webpack_require__(/*! recompose/pure */ "./node_modules/recompose/pure.js"));
-var reactMotion = __webpack_require__(/*! react-motion */ "./node_modules/react-motion/lib/react-motion.js");
-var pick = _interopDefault(__webpack_require__(/*! lodash/pick */ "./node_modules/lodash/pick.js"));
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
-
-var computeNodePath = function computeNodePath(node, getIdentity) {
-    return node.ancestors().map(function (ancestor) {
-        return getIdentity(ancestor.data);
-    }).join('.');
-};
-
-var computeNodes = function computeNodes(_ref) {
-    var root = _ref.root,
-        pack = _ref.pack,
-        leavesOnly = _ref.leavesOnly,
-        getIdentity = _ref.getIdentity,
-        getColor = _ref.getColor;
-
-    // assign a unique id depending on node path to each node
-    root.each(function (node) {
-        node.id = getIdentity(node.data);
-        node.path = computeNodePath(node, getIdentity);
-    });
-
-    pack(root);
-
-    var nodes = leavesOnly ? root.leaves() : root.descendants();
-    nodes = nodes.map(function (node) {
-        node.color = getColor(_extends({}, node.data, { depth: node.depth }));
-        node.label = false;
-
-        return node;
-    });
-
-    return nodes;
-};
-
-var computeZoom = function computeZoom(nodes, currentNodePath, width, height) {
-    var currentNode = nodes.find(function (_ref2) {
-        var path = _ref2.path;
-        return path === currentNodePath;
-    });
-
-    if (!currentNode) return nodes;
-
-    var ratio = Math.min(width, height) / (currentNode.r * 2);
-    var offsetX = width / 2 - currentNode.x * ratio;
-    var offsetY = height / 2 - currentNode.y * ratio;
-
-    return nodes.map(function (node) {
-        return _extends({}, node, {
-            r: node.r * ratio,
-            x: node.x * ratio + offsetX,
-            y: node.y * ratio + offsetY
-        });
-    });
-};
-
-var BubbleNode = function BubbleNode(_ref) {
-    var node = _ref.node,
-        style = _ref.style,
-        handlers = _ref.handlers,
-        theme = _ref.theme;
-
-    if (style.r <= 0) return null;
-
-    return React__default.createElement(
-        'g',
-        { transform: 'translate(' + style.x + ',' + style.y + ')' },
-        React__default.createElement('circle', _extends({
-            r: style.r
-        }, handlers, {
-            fill: style.fill ? style.fill : style.color,
-            stroke: style.borderColor,
-            strokeWidth: style.borderWidth
-        })),
-        node.label !== false && React__default.createElement(
-            'text',
-            {
-                textAnchor: 'middle',
-                alignmentBaseline: 'central',
-                style: _extends({}, theme.labels.text, {
-                    fill: style.labelTextColor,
-                    pointerEvents: 'none'
-                })
-            },
-            node.label
-        )
-    );
-};
-
-BubbleNode.propTypes = {
-    node: PropTypes.object.isRequired,
-    style: PropTypes.shape({
-        r: PropTypes.number.isRequired,
-        x: PropTypes.number.isRequired,
-        y: PropTypes.number.isRequired,
-        color: PropTypes.string.isRequired,
-        fill: PropTypes.string,
-        borderWidth: PropTypes.number.isRequired,
-        borderColor: PropTypes.string.isRequired,
-        labelTextColor: PropTypes.string.isRequired
-    }).isRequired,
-    handlers: PropTypes.object.isRequired,
-    theme: core.themePropType.isRequired
-};
-
-var BubbleHtmlNode = function BubbleHtmlNode(_ref) {
-    var node = _ref.node,
-        style = _ref.style,
-        handlers = _ref.handlers;
-
-    if (style.r <= 0) return null;
-
-    return React__default.createElement(
-        'div',
-        _extends({
-            id: (node.data && node.data.id ? node.data.id : // replace special characters with "-"
-            node.id).replace(/[^\w]/gi, '-'),
-            style: {
-                position: 'absolute',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: style.color,
-                color: style.labelTextColor,
-                borderWidth: style.borderWidth,
-                borderColor: style.borderColor,
-                top: style.y - style.r,
-                left: style.x - style.r,
-                width: style.r * 2,
-                height: style.r * 2,
-                borderStyle: 'solid',
-                borderRadius: style.r
-            }
-        }, handlers),
-        node.label !== false && node.label
-    );
-};
-
-BubbleHtmlNode.propTypes = {
-    node: PropTypes.object.isRequired,
-    style: PropTypes.shape({
-        r: PropTypes.number.isRequired,
-        x: PropTypes.number.isRequired,
-        y: PropTypes.number.isRequired,
-        color: PropTypes.string.isRequired,
-        fill: PropTypes.string,
-        borderWidth: PropTypes.number.isRequired,
-        borderColor: PropTypes.string.isRequired,
-        labelTextColor: PropTypes.string.isRequired
-    }).isRequired,
-    handlers: PropTypes.object.isRequired
-};
-
-/*—————————————————————————————————————————————————————————————————————————————
-
-  Prop types
-
-—————————————————————————————————————————————————————————————————————————————*/
-
-var commonPropTypes = {
-    // data
-    // `root` managed by `withHierarchy()` HOC
-    identity: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-
-    // dimensions managed by `withDimensions()` HOC
-
-    // styling
-    // theme managed by `withTheme()` HOC
-    // colors managed by `withColors()` HOC
-
-    leavesOnly: PropTypes.bool.isRequired,
-    padding: PropTypes.number.isRequired,
-
-    // border
-    borderWidth: PropTypes.number.isRequired,
-    borderColor: PropTypes.any.isRequired,
-
-    // labels
-    enableLabel: PropTypes.bool.isRequired,
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    labelFormat: PropTypes.string,
-    labelTextColor: PropTypes.any.isRequired,
-    labelSkipRadius: PropTypes.number.isRequired,
-
-    // interactivity
-    isInteractive: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
-    isZoomable: PropTypes.bool.isRequired,
-    tooltipFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    tooltip: PropTypes.func
-};
-
-var BubblePropTypes = _extends({}, commonPropTypes, {
-    nodeComponent: PropTypes.func.isRequired
-}, core.defsPropTypes);
-
-var BubbleHtmlPropTypes = _extends({}, commonPropTypes, {
-    nodeComponent: PropTypes.func.isRequired
-});
-
-var BubbleCanvasPropTypes = _extends({}, commonPropTypes, {
-    pixelRatio: PropTypes.number.isRequired
-
-    /*—————————————————————————————————————————————————————————————————————————————
-    
-      Default props
-    
-    —————————————————————————————————————————————————————————————————————————————*/
-
-});var commonDefaultProps = {
-    identity: 'id',
-
-    leavesOnly: false,
-    padding: 1,
-
-    // border
-    borderWidth: 0,
-    borderColor: 'inherit',
-
-    // labels
-    enableLabel: true,
-    label: 'id',
-    labelTextColor: 'inherit:darker(1)',
-    labelSkipRadius: 8,
-
-    // interactivity
-    isInteractive: true,
-    onClick: core.noop,
-    isZoomable: true
-};
-
-var BubbleDefaultProps = _extends({}, commonDefaultProps, {
-    nodeComponent: BubbleNode,
-    defs: [],
-    fill: []
-});
-
-var BubbleHtmlDefaultProps = _extends({}, commonDefaultProps, {
-    nodeComponent: BubbleHtmlNode
-});
-
-var BubbleCanvasDefaultProps = _extends({}, commonDefaultProps, {
-    pixelRatio: global.window && global.window.devicePixelRatio ? global.window.devicePixelRatio : 1
-});
-
-var props = /*#__PURE__*/Object.freeze({
-  BubblePropTypes: BubblePropTypes,
-  BubbleHtmlPropTypes: BubbleHtmlPropTypes,
-  BubbleCanvasPropTypes: BubbleCanvasPropTypes,
-  BubbleDefaultProps: BubbleDefaultProps,
-  BubbleHtmlDefaultProps: BubbleHtmlDefaultProps,
-  BubbleCanvasDefaultProps: BubbleCanvasDefaultProps
-});
-
-var commonEnhancers = [core.withHierarchy(), core.withDimensions(), core.withTheme(), core.withColors({ defaultColorBy: 'depth' }), withPropsOnChange(['width', 'height', 'padding'], function (_ref) {
-    var width = _ref.width,
-        height = _ref.height,
-        padding = _ref.padding;
-    return {
-        pack: d3Hierarchy.pack().size([width, height]).padding(padding)
-    };
-}), withPropsOnChange(['identity'], function (_ref2) {
-    var identity = _ref2.identity;
-    return {
-        getIdentity: core.getAccessorFor(identity)
-    };
-}),
-
-// border
-withPropsOnChange(['borderColor'], function (_ref3) {
-    var borderColor = _ref3.borderColor;
-    return {
-        getBorderColor: core.getInheritedColorGenerator(borderColor)
-    };
-}),
-
-// labels
-withPropsOnChange(['label', 'labelFormat'], function (_ref4) {
-    var label = _ref4.label,
-        labelFormat = _ref4.labelFormat;
-    return {
-        getLabel: core.getLabelGenerator(label, labelFormat)
-    };
-}), withPropsOnChange(['labelTextColor'], function (_ref5) {
-    var labelTextColor = _ref5.labelTextColor;
-    return {
-        getLabelTextColor: core.getInheritedColorGenerator(labelTextColor)
-    };
-}),
-
-// zoom
-withStateHandlers(function (_ref6) {
-    var _ref6$currentNodePath = _ref6.currentNodePath,
-        currentNodePath = _ref6$currentNodePath === undefined ? null : _ref6$currentNodePath;
-    return {
-        currentNodePath: currentNodePath
-    };
-}, {
-    zoomToNode: function zoomToNode(_ref7) {
-        var currentNodePath = _ref7.currentNodePath;
-        return function (path) {
-            if (path === currentNodePath) return { currentNodePath: null };
-            return { currentNodePath: path };
-        };
-    }
-}), withPropsOnChange(['root', 'pack', 'leavesOnly', 'getIdentity', 'getColor'], function (_ref8) {
-    var root = _ref8.root,
-        pack = _ref8.pack,
-        leavesOnly = _ref8.leavesOnly,
-        getIdentity = _ref8.getIdentity,
-        getColor = _ref8.getColor;
-
-    var nodes = computeNodes({ root: root, pack: pack, leavesOnly: leavesOnly, getIdentity: getIdentity, getColor: getColor });
-
-    return { nodes: nodes };
-}), withPropsOnChange(['enableLabel', 'nodes', 'getLabel', 'labelSkipRadius'], function (_ref9) {
-    var enableLabel = _ref9.enableLabel,
-        nodes = _ref9.nodes,
-        getLabel = _ref9.getLabel,
-        labelSkipRadius = _ref9.labelSkipRadius;
-
-    if (!enableLabel) return;
-    var nodesWithLabel = nodes.map(function (node) {
-        if (node.height !== 0 || labelSkipRadius > 0 && node.r < labelSkipRadius) return node;
-        return _extends({}, node, { label: getLabel(node) });
-    });
-
-    return { nodes: nodesWithLabel };
-}), withPropsOnChange(['nodes', 'isZoomable', 'currentNodePath'], function (_ref10) {
-    var nodes = _ref10.nodes,
-        isZoomable = _ref10.isZoomable,
-        currentNodePath = _ref10.currentNodePath,
-        width = _ref10.width,
-        height = _ref10.height;
-
-    if (currentNodePath && isZoomable) {
-        return {
-            nodes: computeZoom(nodes, currentNodePath, width, height)
-        };
-    }
-})];
-
-var svgEnhancers = [withPropsOnChange(['nodes', 'defs', 'fill'], function (_ref11) {
-    var nodes = _ref11.nodes,
-        defs = _ref11.defs,
-        fill = _ref11.fill;
-
-    return {
-        defs: core.bindDefs(defs, nodes, fill, { targetKey: 'fill' })
-    };
-})];
-
-var enhance = (function (Component) {
-    var implPropTypes = props[Component.displayName + 'PropTypes'];
-    var implDefaultProps = props[Component.displayName + 'DefaultProps'];
-
-    Component.propTypes = implPropTypes;
-
-    switch (Component.displayName) {
-        case 'Bubble':
-            return compose.apply(undefined, [defaultProps(implDefaultProps)].concat(commonEnhancers, svgEnhancers, [core.withMotion(), pure]))(Component);
-
-        case 'BubbleHtml':
-            return compose.apply(undefined, [defaultProps(implDefaultProps)].concat(commonEnhancers, [core.withMotion(), pure]))(Component);
-
-        case 'BubbleCanvas':
-            return compose.apply(undefined, [defaultProps(implDefaultProps)].concat(commonEnhancers, [pure]))(Component);
-    }
-
-    return Component;
-});
-
-var nodeWillEnter = function nodeWillEnter(_ref) {
-    var data = _ref.data;
-    return _extends({
-        scale: 0,
-        r: 0,
-        x: data.x,
-        y: data.y
-    }, core.colorMotionSpring(data.color));
-};
-
-var nodeWillLeave = function nodeWillLeave(springConfig) {
-    return function (_ref2) {
-        var data = _ref2.data;
-        return _extends({
-            scale: reactMotion.spring(0, springConfig),
-            r: reactMotion.spring(0, springConfig),
-            x: reactMotion.spring(data.x, springConfig),
-            y: reactMotion.spring(data.y, springConfig)
-        }, core.colorMotionSpring(data.color, springConfig));
-    };
-};
-
-var getNodeHandlers = function getNodeHandlers(node, _ref) {
-    var isInteractive = _ref.isInteractive,
-        onClick = _ref.onClick,
-        showTooltip = _ref.showTooltip,
-        hideTooltip = _ref.hideTooltip,
-        isZoomable = _ref.isZoomable,
-        zoomToNode = _ref.zoomToNode,
-        theme = _ref.theme,
-        tooltipFormat = _ref.tooltipFormat,
-        tooltip = _ref.tooltip;
-
-    if (!isInteractive) return {};
-
-    var handleTooltip = function handleTooltip(e) {
-        showTooltip(React__default.createElement(core.BasicTooltip, {
-            id: node.id,
-            value: node.value,
-            enableChip: true,
-            color: node.color,
-            theme: theme,
-            format: tooltipFormat,
-            renderContent: typeof tooltip === 'function' ? tooltip.bind(null, _extends({ node: node }, node)) : null
-        }), e);
-    };
-
-    var clickHandler = onClick;
-    if (isZoomable) {
-        clickHandler = function clickHandler(event) {
-            onClick(node, event);
-            zoomToNode(node.path);
-        };
-    } else {
-        clickHandler = function clickHandler(event) {
-            onClick(node, event);
-        };
-    }
-
-    return {
-        onMouseEnter: handleTooltip,
-        onMouseMove: handleTooltip,
-        onMouseLeave: hideTooltip,
-        onClick: clickHandler
-    };
-};
-
-/* eslint-disable react/prop-types */
-
-var Bubble = function Bubble(_ref) {
-    var nodes = _ref.nodes,
-        nodeComponent = _ref.nodeComponent,
-        margin = _ref.margin,
-        outerWidth = _ref.outerWidth,
-        outerHeight = _ref.outerHeight,
-        theme = _ref.theme,
-        borderWidth = _ref.borderWidth,
-        getBorderColor = _ref.getBorderColor,
-        defs = _ref.defs,
-        getLabelTextColor = _ref.getLabelTextColor,
-        animate = _ref.animate,
-        motionStiffness = _ref.motionStiffness,
-        motionDamping = _ref.motionDamping,
-        isInteractive = _ref.isInteractive,
-        onClick = _ref.onClick,
-        tooltipFormat = _ref.tooltipFormat,
-        tooltip = _ref.tooltip,
-        isZoomable = _ref.isZoomable,
-        zoomToNode = _ref.zoomToNode;
-
-    var springConfig = {
-        stiffness: motionStiffness,
-        damping: motionDamping
-    };
-
-    var getHandlers = function getHandlers(node, showTooltip, hideTooltip) {
-        return getNodeHandlers(node, {
-            isInteractive: isInteractive,
-            onClick: onClick,
-            showTooltip: showTooltip,
-            hideTooltip: hideTooltip,
-            isZoomable: isZoomable,
-            zoomToNode: zoomToNode,
-            theme: theme,
-            tooltipFormat: tooltipFormat,
-            tooltip: tooltip
-        });
-    };
-
-    return React__default.createElement(
-        core.Container,
-        { isInteractive: isInteractive, theme: theme },
-        function (_ref2) {
-            var showTooltip = _ref2.showTooltip,
-                hideTooltip = _ref2.hideTooltip;
-            return React__default.createElement(
-                core.SvgWrapper,
-                {
-                    width: outerWidth,
-                    height: outerHeight,
-                    margin: margin,
-                    defs: defs,
-                    theme: theme
-                },
-                !animate && React__default.createElement(
-                    'g',
-                    null,
-                    nodes.map(function (node) {
-                        return React__default.createElement(nodeComponent, {
-                            key: node.path,
-                            node: node,
-                            style: _extends({}, pick(node, ['scale', 'r', 'x', 'y', 'color']), {
-                                fill: node.fill,
-                                borderWidth: borderWidth,
-                                borderColor: getBorderColor(node),
-                                labelTextColor: getLabelTextColor(node)
-                            }),
-                            handlers: getHandlers(node, showTooltip, hideTooltip),
-                            theme: theme
-                        });
-                    })
-                ),
-                animate && React__default.createElement(
-                    reactMotion.TransitionMotion,
-                    {
-                        willEnter: nodeWillEnter,
-                        willLeave: nodeWillLeave(springConfig),
-                        styles: nodes.map(function (node) {
-                            return {
-                                key: node.path,
-                                data: node,
-                                style: _extends({
-                                    scale: reactMotion.spring(1, springConfig),
-                                    r: reactMotion.spring(node.r, springConfig),
-                                    x: reactMotion.spring(node.x, springConfig),
-                                    y: reactMotion.spring(node.y, springConfig),
-                                    opacity: reactMotion.spring(1, springConfig)
-                                }, core.colorMotionSpring(node.color, springConfig))
-                            };
-                        })
-                    },
-                    function (interpolatedStyles) {
-                        return React__default.createElement(
-                            'g',
-                            null,
-                            interpolatedStyles.map(function (_ref3) {
-                                var style = _ref3.style,
-                                    node = _ref3.data;
-
-                                style.color = core.getInterpolatedColor(style);
-
-                                return React__default.createElement(nodeComponent, {
-                                    key: node.path,
-                                    node: node,
-                                    style: _extends({}, style, {
-                                        fill: node.fill,
-                                        borderWidth: borderWidth,
-                                        borderColor: getBorderColor(style),
-                                        labelTextColor: getLabelTextColor(style)
-                                    }),
-                                    handlers: getHandlers(node, showTooltip, hideTooltip),
-                                    theme: theme
-                                });
-                            })
-                        );
-                    }
-                )
-            );
-        }
-    );
-};
-
-Bubble.displayName = 'Bubble';
-
-var enhancedBubble = enhance(Bubble);
-enhancedBubble.displayName = 'Bubble';
-
-var ResponsiveBubble = function ResponsiveBubble(props) {
-    return React__default.createElement(
-        core.ResponsiveWrapper,
-        null,
-        function (_ref) {
-            var width = _ref.width,
-                height = _ref.height;
-            return React__default.createElement(enhancedBubble, _extends({ width: width, height: height }, props));
-        }
-    );
-};
-
-/* eslint-disable react/prop-types */
-
-var BubbleHtml = function BubbleHtml(_ref) {
-    var nodes = _ref.nodes,
-        nodeComponent = _ref.nodeComponent,
-        margin = _ref.margin,
-        outerWidth = _ref.outerWidth,
-        outerHeight = _ref.outerHeight,
-        theme = _ref.theme,
-        borderWidth = _ref.borderWidth,
-        getBorderColor = _ref.getBorderColor,
-        getLabelTextColor = _ref.getLabelTextColor,
-        animate = _ref.animate,
-        motionStiffness = _ref.motionStiffness,
-        motionDamping = _ref.motionDamping,
-        isInteractive = _ref.isInteractive,
-        onClick = _ref.onClick,
-        isZoomable = _ref.isZoomable,
-        zoomToNode = _ref.zoomToNode,
-        tooltipFormat = _ref.tooltipFormat,
-        tooltip = _ref.tooltip;
-
-    var springConfig = {
-        stiffness: motionStiffness,
-        damping: motionDamping
-    };
-
-    var getHandlers = function getHandlers(node, showTooltip, hideTooltip) {
-        return getNodeHandlers(node, {
-            isInteractive: isInteractive,
-            onClick: onClick,
-            showTooltip: showTooltip,
-            hideTooltip: hideTooltip,
-            isZoomable: isZoomable,
-            zoomToNode: zoomToNode,
-            theme: theme,
-            tooltipFormat: tooltipFormat,
-            tooltip: tooltip
-        });
-    };
-
-    return React__default.createElement(
-        core.Container,
-        { isInteractive: isInteractive, theme: theme },
-        function (_ref2) {
-            var showTooltip = _ref2.showTooltip,
-                hideTooltip = _ref2.hideTooltip;
-            return React__default.createElement(
-                'div',
-                {
-                    style: {
-                        position: 'relative',
-                        width: outerWidth,
-                        height: outerHeight
-                    }
-                },
-                !animate && React__default.createElement(
-                    'div',
-                    { style: { position: 'absolute', top: margin.top, left: margin.left } },
-                    nodes.map(function (node) {
-                        return React__default.createElement(nodeComponent, {
-                            key: node.path,
-                            node: node,
-                            style: _extends({}, pick(node, ['scale', 'r', 'x', 'y', 'color']), {
-                                borderWidth: borderWidth,
-                                borderColor: getBorderColor(node),
-                                labelTextColor: getLabelTextColor(node)
-                            }),
-                            handlers: getHandlers(node, showTooltip, hideTooltip)
-                        });
-                    })
-                ),
-                animate && React__default.createElement(
-                    reactMotion.TransitionMotion,
-                    {
-                        willEnter: nodeWillEnter,
-                        willLeave: nodeWillLeave(springConfig),
-                        styles: nodes.map(function (node) {
-                            return {
-                                key: node.path,
-                                data: node,
-                                style: _extends({
-                                    scale: reactMotion.spring(1, springConfig),
-                                    r: reactMotion.spring(node.r, springConfig),
-                                    x: reactMotion.spring(node.x, springConfig),
-                                    y: reactMotion.spring(node.y, springConfig),
-                                    opacity: reactMotion.spring(1, springConfig)
-                                }, core.colorMotionSpring(node.color, springConfig))
-                            };
-                        })
-                    },
-                    function (interpolatedStyles) {
-                        return React__default.createElement(
-                            'div',
-                            {
-                                style: {
-                                    position: 'absolute',
-                                    top: margin.top,
-                                    left: margin.left
-                                }
-                            },
-                            interpolatedStyles.map(function (_ref3) {
-                                var style = _ref3.style,
-                                    node = _ref3.data;
-
-                                style.color = core.getInterpolatedColor(style);
-
-                                return React__default.createElement(nodeComponent, {
-                                    key: node.path,
-                                    node: node,
-                                    style: _extends({}, style, {
-                                        borderWidth: borderWidth,
-                                        borderColor: getBorderColor(style),
-                                        labelTextColor: getLabelTextColor(style)
-                                    }),
-                                    handlers: getHandlers(node, showTooltip, hideTooltip)
-                                });
-                            })
-                        );
-                    }
-                )
-            );
-        }
-    );
-};
-
-BubbleHtml.displayName = 'BubbleHtml';
-
-var enhancedBubbleHtml = enhance(BubbleHtml);
-enhancedBubbleHtml.displayName = 'BubbleHtml';
-
-var ResponsiveBubbleHtml = function ResponsiveBubbleHtml(props) {
-    return React__default.createElement(
-        core.ResponsiveWrapper,
-        null,
-        function (_ref) {
-            var width = _ref.width,
-                height = _ref.height;
-            return React__default.createElement(enhancedBubbleHtml, _extends({ width: width, height: height }, props));
-        }
-    );
-};
-
-/* eslint-disable react/prop-types */
-
-var BubbleCanvas = function (_Component) {
-    inherits(BubbleCanvas, _Component);
-
-    function BubbleCanvas() {
-        classCallCheck(this, BubbleCanvas);
-        return possibleConstructorReturn(this, _Component.apply(this, arguments));
-    }
-
-    BubbleCanvas.prototype.componentDidMount = function componentDidMount() {
-        this.ctx = this.surface.getContext('2d');
-        this.draw(this.props);
-    };
-
-    BubbleCanvas.prototype.componentDidUpdate = function componentDidUpdate() {
-        this.ctx = this.surface.getContext('2d');
-        this.draw(this.props);
-    };
-
-    BubbleCanvas.prototype.draw = function draw(props) {
-        var _this2 = this;
-
-        var nodes = props.nodes,
-            pixelRatio = props.pixelRatio,
-            margin = props.margin,
-            outerWidth = props.outerWidth,
-            outerHeight = props.outerHeight,
-            theme = props.theme,
-            borderWidth = props.borderWidth,
-            getBorderColor = props.getBorderColor,
-            enableLabel = props.enableLabel,
-            getLabel = props.getLabel,
-            labelSkipRadius = props.labelSkipRadius,
-            getLabelTextColor = props.getLabelTextColor;
-
-
-        this.surface.width = outerWidth * pixelRatio;
-        this.surface.height = outerHeight * pixelRatio;
-
-        this.ctx.scale(pixelRatio, pixelRatio);
-        this.ctx.fillStyle = theme.background;
-        this.ctx.fillRect(0, 0, outerWidth, outerHeight);
-        this.ctx.translate(margin.left, margin.top);
-
-        /*
-        Could be used to compute metaballs,
-        grouping nodes by depth + common parent
-        using marching squares, but it really is a bonus feature…
-         const maxDepth = _.maxBy(nodes, 'depth').depth
-        const nodesByDepth = _.range(maxDepth + 1).map(depth =>
-            _.values(
-                _.groupBy(nodes.filter(({ depth: nodeDepth }) => nodeDepth === depth), 'parent.id')
-            )
-        )
-        nodesByDepth.forEach(layer => {
-            layer.forEach(node => {
-                console.log(node)
-            })
-        })
-        */
-
-        nodes.forEach(function (node) {
-            _this2.ctx.save();
-
-            if (borderWidth > 0) {
-                _this2.ctx.strokeStyle = getBorderColor(node);
-                _this2.ctx.lineWidth = borderWidth;
-            }
-
-            _this2.ctx.beginPath();
-            _this2.ctx.arc(node.x, node.y, node.r, 0, 2 * Math.PI);
-            _this2.ctx.fillStyle = node.color;
-            _this2.ctx.fill();
-
-            if (borderWidth > 0) {
-                _this2.ctx.stroke();
-            }
-        });
-
-        if (enableLabel) {
-            this.ctx.textAlign = 'center';
-            this.ctx.textBaseline = 'middle';
-            this.ctx.font = theme.labels.text.fontSize + 'px sans-serif';
-
-            // draw labels on top
-            nodes.filter(function (_ref) {
-                var r = _ref.r;
-                return r > labelSkipRadius;
-            }).forEach(function (node) {
-                var label = getLabel(node);
-                var labelTextColor = getLabelTextColor(node);
-
-                _this2.ctx.fillStyle = labelTextColor;
-                _this2.ctx.fillText(label, node.x, node.y);
-            });
-        }
-    };
-
-    BubbleCanvas.prototype.render = function render() {
-        var _this3 = this;
-
-        var _props = this.props,
-            outerWidth = _props.outerWidth,
-            outerHeight = _props.outerHeight,
-            pixelRatio = _props.pixelRatio,
-            isInteractive = _props.isInteractive,
-            theme = _props.theme;
-
-
-        return React__default.createElement(
-            core.Container,
-            { isInteractive: isInteractive, theme: theme },
-            function () {
-                return React__default.createElement('canvas', {
-                    ref: function ref(surface) {
-                        _this3.surface = surface;
-                    },
-                    width: outerWidth * pixelRatio,
-                    height: outerHeight * pixelRatio,
-                    style: {
-                        width: outerWidth,
-                        height: outerHeight
-                    }
-                });
-            }
-        );
-    };
-
-    return BubbleCanvas;
-}(React.Component);
-
-BubbleCanvas.displayName = 'BubbleCanvas';
-
-var enhancedBubbleCanvas = enhance(BubbleCanvas);
-enhancedBubbleCanvas.displayName = 'BubbleCanvas';
-
-var ResponsiveBubbleCanvas = function ResponsiveBubbleCanvas(props) {
-    return React__default.createElement(
-        core.ResponsiveWrapper,
-        null,
-        function (_ref) {
-            var width = _ref.width,
-                height = _ref.height;
-            return React__default.createElement(enhancedBubbleCanvas, _extends({ width: width, height: height }, props));
-        }
-    );
-};
-
-exports.Bubble = enhancedBubble;
-exports.ResponsiveBubble = ResponsiveBubble;
-exports.BubbleHtml = enhancedBubbleHtml;
-exports.ResponsiveBubbleHtml = ResponsiveBubbleHtml;
-exports.BubbleCanvas = enhancedBubbleCanvas;
-exports.ResponsiveBubbleCanvas = ResponsiveBubbleCanvas;
-exports.BubblePropTypes = BubblePropTypes;
-exports.BubbleHtmlPropTypes = BubbleHtmlPropTypes;
-exports.BubbleCanvasPropTypes = BubbleCanvasPropTypes;
-exports.BubbleDefaultProps = BubbleDefaultProps;
-exports.BubbleHtmlDefaultProps = BubbleHtmlDefaultProps;
-exports.BubbleCanvasDefaultProps = BubbleCanvasDefaultProps;
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/@nivo/circle-packing/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/@nivo/circle-packing/index.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./cjs/nivo-circle-packing */ "./node_modules/@nivo/circle-packing/cjs/nivo-circle-packing.js")
 
 
 /***/ }),
@@ -8726,6 +5470,1388 @@ exports.LegendPropShape = LegendPropShape;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! ./cjs/nivo-legends */ "./node_modules/@nivo/legends/cjs/nivo-legends.js")
+
+
+/***/ }),
+
+/***/ "./node_modules/@nivo/pie/cjs/nivo-pie.js":
+/*!************************************************!*\
+  !*** ./node_modules/@nivo/pie/cjs/nivo-pie.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+var d3Shape = __webpack_require__(/*! d3-shape */ "./node_modules/d3-shape/src/index.js");
+var setDisplayName = _interopDefault(__webpack_require__(/*! recompose/setDisplayName */ "./node_modules/recompose/setDisplayName.js"));
+var compose = _interopDefault(__webpack_require__(/*! recompose/compose */ "./node_modules/recompose/compose.js"));
+var pure = _interopDefault(__webpack_require__(/*! recompose/pure */ "./node_modules/recompose/pure.js"));
+var defaultProps = _interopDefault(__webpack_require__(/*! recompose/defaultProps */ "./node_modules/recompose/defaultProps.js"));
+var withPropsOnChange = _interopDefault(__webpack_require__(/*! recompose/withPropsOnChange */ "./node_modules/recompose/withPropsOnChange.js"));
+var core = __webpack_require__(/*! @nivo/core */ "./node_modules/@nivo/core/index.js");
+var legends = __webpack_require__(/*! @nivo/legends */ "./node_modules/@nivo/legends/index.js");
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+var objectWithoutProperties = function (obj, keys) {
+  var target = {};
+
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+
+  return target;
+};
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+var PieLayout = function (_Component) {
+    inherits(PieLayout, _Component);
+
+    function PieLayout() {
+        classCallCheck(this, PieLayout);
+        return possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    PieLayout.prototype.render = function render() {
+        var _props = this.props,
+            arcs = _props.arcs,
+            arcGenerator = _props.arcGenerator,
+            startAngle = _props.startAngle,
+            endAngle = _props.endAngle,
+            width = _props.width,
+            height = _props.height,
+            centerX = _props.centerX,
+            centerY = _props.centerY,
+            radius = _props.radius,
+            innerRadius = _props.innerRadius,
+            debug = _props.debug,
+            render = _props.children;
+
+
+        return render({
+            arcs: arcs,
+            arcGenerator: arcGenerator,
+            startAngle: startAngle,
+            endAngle: endAngle,
+            width: width,
+            height: height,
+            centerX: centerX,
+            centerY: centerY,
+            radius: radius,
+            innerRadius: innerRadius,
+            debug: debug
+        });
+    };
+
+    return PieLayout;
+}(React.Component);
+
+PieLayout.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired
+    })).isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    fit: PropTypes.bool.isRequired,
+    sortByValue: PropTypes.bool.isRequired,
+    startAngle: PropTypes.number.isRequired,
+    endAngle: PropTypes.number.isRequired,
+    padAngle: PropTypes.number.isRequired,
+    arcs: PropTypes.array.isRequired, // computed
+    arcGenerator: PropTypes.func.isRequired, // computed
+    centerX: PropTypes.number.isRequired, // computed
+    centerY: PropTypes.number.isRequired, // computed
+    radius: PropTypes.number.isRequired, // computed
+    innerRadius: PropTypes.number.isRequired, // re-computed
+    cornerRadius: PropTypes.number.isRequired,
+    debug: PropTypes.shape({
+        points: PropTypes.array.isRequired,
+        box: PropTypes.shape({
+            x: PropTypes.number.isRequired,
+            y: PropTypes.number.isRequired,
+            width: PropTypes.number.isRequired,
+            height: PropTypes.number.isRequired
+        }).isRequired,
+        ratio: PropTypes.number.isRequired
+    }), // computed
+    children: PropTypes.func.isRequired
+};
+
+
+var PieLayoutDefaultProps = {
+    fit: true,
+    sortByValue: false,
+    innerRadius: 0,
+    startAngle: 0,
+    endAngle: 360,
+    padAngle: 0,
+    cornerRadius: 0
+};
+
+var enhance = function enhance(Component) {
+    return compose(defaultProps(PieLayoutDefaultProps), core.withColors(), withPropsOnChange(['width', 'height', 'innerRadius', 'startAngle', 'endAngle', 'fit', 'cornerRadius'], function (_ref) {
+        var width = _ref.width,
+            height = _ref.height,
+            _innerRadius = _ref.innerRadius,
+            startAngle = _ref.startAngle,
+            endAngle = _ref.endAngle,
+            fit = _ref.fit,
+            cornerRadius = _ref.cornerRadius;
+
+        var radius = Math.min(width, height) / 2;
+        var innerRadius = radius * Math.min(_innerRadius, 1);
+
+        var centerX = width / 2;
+        var centerY = height / 2;
+
+        var boundingBox = void 0;
+        if (fit === true) {
+            var _computeArcBoundingBo = core.computeArcBoundingBox(centerX, centerY, radius, startAngle - 90, endAngle - 90),
+                points = _computeArcBoundingBo.points,
+                box = objectWithoutProperties(_computeArcBoundingBo, ['points']);
+
+            var ratio = Math.min(width / box.width, height / box.height);
+
+            var adjustedBox = {
+                width: box.width * ratio,
+                height: box.height * ratio
+            };
+            adjustedBox.x = (width - adjustedBox.width) / 2;
+            adjustedBox.y = (height - adjustedBox.height) / 2;
+
+            centerX = (centerX - box.x) / box.width * box.width * ratio + adjustedBox.x;
+            centerY = (centerY - box.y) / box.height * box.height * ratio + adjustedBox.y;
+
+            boundingBox = { box: box, ratio: ratio, points: points };
+
+            radius = radius * ratio;
+            innerRadius = innerRadius * ratio;
+        }
+
+        var arcGenerator = d3Shape.arc().outerRadius(radius).innerRadius(innerRadius).cornerRadius(cornerRadius);
+
+        return {
+            centerX: centerX,
+            centerY: centerY,
+            radius: radius,
+            innerRadius: innerRadius,
+            arcGenerator: arcGenerator,
+            debug: boundingBox
+        };
+    }), withPropsOnChange(['sortByValue', 'padAngle', 'startAngle', 'endAngle'], function (_ref2) {
+        var sortByValue = _ref2.sortByValue,
+            padAngle = _ref2.padAngle,
+            startAngle = _ref2.startAngle,
+            endAngle = _ref2.endAngle;
+
+        var pie = d3Shape.pie().value(function (d) {
+            return d.value;
+        }).padAngle(core.degreesToRadians(padAngle)).startAngle(core.degreesToRadians(startAngle)).endAngle(core.degreesToRadians(endAngle));
+
+        if (sortByValue !== true) pie.sortValues(null);
+
+        return { pie: pie };
+    }), withPropsOnChange(['pie', 'data'], function (_ref3) {
+        var pie = _ref3.pie,
+            data = _ref3.data;
+        return {
+            arcs: pie(data).map(function (arc) {
+                var angle = Math.abs(arc.endAngle - arc.startAngle);
+
+                return _extends({}, arc, {
+                    angle: angle,
+                    angleDeg: core.radiansToDegrees(angle)
+                });
+            })
+        };
+    }), withPropsOnChange(['arcs', 'getColor'], function (_ref4) {
+        var arcs = _ref4.arcs,
+            getColor = _ref4.getColor;
+        return {
+            arcs: arcs.map(function (arc) {
+                return _extends({}, arc, {
+                    color: getColor(arc.data)
+                });
+            })
+        };
+    }), pure)(Component);
+};
+var PieLayout$1 = setDisplayName('PieLayout')(enhance(PieLayout));
+
+var arcPropType = PropTypes.shape({
+    startAngle: PropTypes.number.isRequired,
+    endAngle: PropTypes.number.isRequired,
+    angle: PropTypes.number.isRequired,
+    angleDeg: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        value: PropTypes.number.isRequired
+    }).isRequired
+});
+
+var PiePropTypes = {
+    data: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        value: PropTypes.number.isRequired
+    })).isRequired,
+
+    // layout
+    startAngle: PropTypes.number.isRequired,
+    endAngle: PropTypes.number.isRequired,
+    fit: PropTypes.bool.isRequired,
+    padAngle: PropTypes.number.isRequired,
+    sortByValue: PropTypes.bool.isRequired,
+    innerRadius: PropTypes.number.isRequired,
+    cornerRadius: PropTypes.number.isRequired,
+
+    // border
+    borderWidth: PropTypes.number.isRequired,
+    borderColor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+
+    // radial labels
+    enableRadialLabels: PropTypes.bool.isRequired,
+    radialLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    radialLabelsSkipAngle: PropTypes.number,
+    radialLabelsTextXOffset: PropTypes.number,
+    radialLabelsTextColor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    radialLabelsLinkOffset: PropTypes.number,
+    radialLabelsLinkDiagonalLength: PropTypes.number,
+    radialLabelsLinkHorizontalLength: PropTypes.number,
+    radialLabelsLinkStrokeWidth: PropTypes.number,
+    radialLabelsLinkColor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+
+    // slices labels
+    enableSlicesLabels: PropTypes.bool.isRequired,
+    sliceLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    slicesLabelsSkipAngle: PropTypes.number,
+    slicesLabelsTextColor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+
+    // styling
+    defs: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired
+    })).isRequired,
+    fill: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        match: PropTypes.oneOfType([PropTypes.oneOf(['*']), PropTypes.object, PropTypes.func]).isRequired
+    })).isRequired,
+    //boundDefs: PropTypes.array.isRequired, // computed
+
+    // interactivity
+    isInteractive: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    onMouseEnter: PropTypes.func.isRequired,
+    onMouseLeave: PropTypes.func.isRequired,
+
+    // tooltip
+    lockTooltip: PropTypes.bool.isRequired,
+    tooltipFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    tooltip: PropTypes.func,
+
+    // legends
+    legends: PropTypes.arrayOf(PropTypes.shape(legends.LegendPropShape)).isRequired
+    /*
+    legendData: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            fill: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    */
+};
+
+var PieDefaultProps = {
+    sortByValue: false,
+    innerRadius: 0,
+    padAngle: 0,
+    cornerRadius: 0,
+
+    // layout
+    startAngle: 0,
+    endAngle: core.radiansToDegrees(Math.PI * 2),
+    fit: true,
+
+    // border
+    borderWidth: 0,
+    borderColor: 'inherit:darker(1)',
+
+    // radial labels
+    enableRadialLabels: true,
+    radialLabel: 'id',
+    radialLabelsTextColor: 'theme',
+    radialLabelsLinkColor: 'theme',
+
+    // slices labels
+    enableSlicesLabels: true,
+    sliceLabel: 'value',
+    slicesLabelsTextColor: 'theme',
+
+    // styling
+    defs: [],
+    fill: [],
+
+    // interactivity
+    isInteractive: true,
+    onClick: core.noop,
+    onMouseEnter: core.noop,
+    onMouseLeave: core.noop,
+
+    // tooltip
+    lockTooltip: true,
+
+    // legends
+    legends: []
+};
+
+var PieSlice = function PieSlice(_ref) {
+    var data = _ref.data,
+        path = _ref.path,
+        color = _ref.color,
+        fill = _ref.fill,
+        borderWidth = _ref.borderWidth,
+        borderColor = _ref.borderColor,
+        showTooltip = _ref.showTooltip,
+        hideTooltip = _ref.hideTooltip,
+        onClick = _ref.onClick,
+        onMouseEnter = _ref.onMouseEnter,
+        onMouseLeave = _ref.onMouseLeave,
+        tooltipFormat = _ref.tooltipFormat,
+        tooltip = _ref.tooltip,
+        theme = _ref.theme;
+
+    var handleTooltip = function handleTooltip(e) {
+        return showTooltip(React__default.createElement(core.BasicTooltip, {
+            id: data.label,
+            value: data.value,
+            enableChip: true,
+            color: color,
+            theme: theme,
+            format: tooltipFormat,
+            renderContent: typeof tooltip === 'function' ? tooltip.bind(null, _extends({ color: color }, data)) : null
+        }), e);
+    };
+    var handleMouseEnter = function handleMouseEnter(e) {
+        onMouseEnter(data, e);
+        handleTooltip(e);
+    };
+    var handleMouseLeave = function handleMouseLeave(e) {
+        onMouseLeave(data, e);
+        hideTooltip(e);
+    };
+
+    return React__default.createElement('path', {
+        key: data.id,
+        d: path,
+        fill: fill,
+        strokeWidth: borderWidth,
+        stroke: borderColor,
+        onMouseEnter: handleMouseEnter,
+        onMouseMove: handleTooltip,
+        onMouseLeave: handleMouseLeave,
+        onClick: onClick
+    });
+};
+
+PieSlice.propTypes = {
+    data: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        value: PropTypes.number.isRequired
+    }).isRequired,
+
+    path: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    fill: PropTypes.string.isRequired,
+    borderWidth: PropTypes.number.isRequired,
+    borderColor: PropTypes.string.isRequired,
+
+    tooltipFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    tooltip: PropTypes.func,
+    showTooltip: PropTypes.func.isRequired,
+    hideTooltip: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
+    onMouseEnter: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+
+    theme: PropTypes.shape({
+        tooltip: PropTypes.shape({}).isRequired
+    }).isRequired
+};
+
+var enhance$1 = compose(withPropsOnChange(['data', 'onClick'], function (_ref2) {
+    var data = _ref2.data,
+        _onClick = _ref2.onClick;
+    return {
+        onClick: function onClick(event) {
+            return _onClick(data, event);
+        }
+    };
+}), pure);
+
+var PieSlice$1 = enhance$1(PieSlice);
+
+var computeRadialLabels = function computeRadialLabels(arcs, _ref) {
+    var getLabel = _ref.getLabel,
+        radius = _ref.radius,
+        skipAngle = _ref.skipAngle,
+        linkOffset = _ref.linkOffset,
+        linkDiagonalLength = _ref.linkDiagonalLength,
+        linkHorizontalLength = _ref.linkHorizontalLength,
+        textXOffset = _ref.textXOffset;
+    return arcs.filter(function (arc) {
+        return skipAngle === 0 || arc.angleDeg > skipAngle;
+    }).map(function (arc) {
+        var angle = core.absoluteAngleRadians(core.midAngle(arc) - Math.PI / 2);
+        var positionA = core.positionFromAngle(angle, radius + linkOffset);
+        var positionB = core.positionFromAngle(angle, radius + linkOffset + linkDiagonalLength);
+
+        var positionC = void 0;
+        var labelPosition = void 0;
+        var textAlign = void 0;
+
+        if (core.absoluteAngleDegrees(core.radiansToDegrees(angle)) < 90 || core.absoluteAngleDegrees(core.radiansToDegrees(angle)) >= 270) {
+            positionC = { x: positionB.x + linkHorizontalLength, y: positionB.y };
+            labelPosition = {
+                x: positionB.x + linkHorizontalLength + textXOffset,
+                y: positionB.y
+            };
+            textAlign = 'left';
+        } else {
+            positionC = { x: positionB.x - linkHorizontalLength, y: positionB.y };
+            labelPosition = {
+                x: positionB.x - linkHorizontalLength - textXOffset,
+                y: positionB.y
+            };
+            textAlign = 'right';
+        }
+
+        return {
+            arc: arc,
+            text: getLabel(arc.data),
+            position: labelPosition,
+            align: textAlign,
+            line: [positionA, positionB, positionC]
+        };
+    });
+};
+
+var lineGenerator = d3Shape.line().x(function (d) {
+    return d.x;
+}).y(function (d) {
+    return d.y;
+});
+
+var PieRadialLabels = function (_Component) {
+    inherits(PieRadialLabels, _Component);
+
+    function PieRadialLabels() {
+        classCallCheck(this, PieRadialLabels);
+        return possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    PieRadialLabels.prototype.render = function render() {
+        var _props = this.props,
+            arcs = _props.arcs,
+            label = _props.label,
+            radius = _props.radius,
+            skipAngle = _props.skipAngle,
+            linkOffset = _props.linkOffset,
+            linkDiagonalLength = _props.linkDiagonalLength,
+            linkHorizontalLength = _props.linkHorizontalLength,
+            linkStrokeWidth = _props.linkStrokeWidth,
+            textXOffset = _props.textXOffset,
+            textColor = _props.textColor,
+            linkColor = _props.linkColor,
+            theme = _props.theme;
+
+
+        var labels = computeRadialLabels(arcs, {
+            getLabel: label,
+            radius: radius,
+            skipAngle: skipAngle,
+            linkOffset: linkOffset,
+            linkDiagonalLength: linkDiagonalLength,
+            linkHorizontalLength: linkHorizontalLength,
+            textXOffset: textXOffset
+        });
+
+        return labels.map(function (label) {
+            return React__default.createElement(
+                React.Fragment,
+                { key: label.arc.data.id },
+                React__default.createElement('path', {
+                    d: lineGenerator(label.line),
+                    fill: 'none',
+                    style: { fill: 'none', stroke: linkColor(label.arc, theme) },
+                    strokeWidth: linkStrokeWidth
+                }),
+                React__default.createElement(
+                    'g',
+                    { transform: 'translate(' + label.position.x + ', ' + label.position.y + ')' },
+                    React__default.createElement(
+                        'text',
+                        {
+                            textAnchor: core.textPropsByEngine.svg.align[label.align],
+                            dy: '0.3em',
+                            style: _extends({}, theme.labels.text, {
+                                fill: textColor(label.arc.data, theme)
+                            })
+                        },
+                        label.text
+                    )
+                )
+            );
+        });
+    };
+
+    return PieRadialLabels;
+}(React.Component);
+
+PieRadialLabels.propTypes = {
+    arcs: PropTypes.arrayOf(arcPropType).isRequired,
+    label: PropTypes.func.isRequired,
+    skipAngle: PropTypes.number.isRequired,
+    radius: PropTypes.number.isRequired,
+    linkOffset: PropTypes.number.isRequired,
+    linkDiagonalLength: PropTypes.number.isRequired,
+    linkHorizontalLength: PropTypes.number.isRequired,
+    linkStrokeWidth: PropTypes.number.isRequired,
+    textXOffset: PropTypes.number.isRequired,
+    textColor: PropTypes.func.isRequired,
+    linkColor: PropTypes.func.isRequired,
+    theme: PropTypes.shape({
+        axis: core.axisThemePropType.isRequired,
+        labels: core.labelsThemePropType.isRequired
+    }).isRequired
+};
+PieRadialLabels.defaultProps = {
+    skipAngle: 0,
+    linkOffset: 0,
+    linkDiagonalLength: 16,
+    linkHorizontalLength: 24,
+    linkStrokeWidth: 1,
+    textXOffset: 6
+};
+
+var sliceStyle = {
+    pointerEvents: 'none'
+};
+
+var PieSlicesLabels = function (_Component) {
+    inherits(PieSlicesLabels, _Component);
+
+    function PieSlicesLabels() {
+        classCallCheck(this, PieSlicesLabels);
+        return possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    PieSlicesLabels.prototype.render = function render() {
+        var _props = this.props,
+            arcs = _props.arcs,
+            label = _props.label,
+            radius = _props.radius,
+            skipAngle = _props.skipAngle,
+            innerRadius = _props.innerRadius,
+            textColor = _props.textColor,
+            theme = _props.theme;
+
+
+        var centerRadius = innerRadius + (radius - innerRadius) / 2;
+
+        return React__default.createElement(
+            React.Fragment,
+            null,
+            arcs.filter(function (arc) {
+                return skipAngle === 0 || arc.angleDeg > skipAngle;
+            }).map(function (arc) {
+                var angle = core.midAngle(arc) - Math.PI / 2;
+                var position = core.positionFromAngle(angle, centerRadius);
+
+                return React__default.createElement(
+                    'g',
+                    {
+                        key: arc.data.id,
+                        transform: 'translate(' + position.x + ', ' + position.y + ')',
+                        style: sliceStyle
+                    },
+                    React__default.createElement(
+                        'text',
+                        {
+                            textAnchor: 'middle',
+                            style: _extends({}, theme.labels.text, {
+                                fill: textColor(arc.data, theme)
+                            })
+                        },
+                        label(arc.data)
+                    )
+                );
+            })
+        );
+    };
+
+    return PieSlicesLabels;
+}(React.Component);
+
+PieSlicesLabels.propTypes = {
+    arcs: PropTypes.arrayOf(arcPropType).isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    skipAngle: PropTypes.number.isRequired,
+    radius: PropTypes.number.isRequired,
+    innerRadius: PropTypes.number.isRequired,
+    textColor: PropTypes.func.isRequired,
+    theme: PropTypes.shape({
+        labels: core.labelsThemePropType.isRequired
+    }).isRequired
+};
+PieSlicesLabels.defaultProps = {
+    skipAngle: 0
+};
+
+var PieLegends = function (_Component) {
+    inherits(PieLegends, _Component);
+
+    function PieLegends() {
+        classCallCheck(this, PieLegends);
+        return possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    PieLegends.prototype.render = function render() {
+        var _props = this.props,
+            width = _props.width,
+            height = _props.height,
+            legends$$1 = _props.legends,
+            data = _props.data,
+            theme = _props.theme;
+
+
+        return legends$$1.map(function (legend, i) {
+            return React__default.createElement(legends.BoxLegendSvg, _extends({
+                key: i
+            }, legend, {
+                containerWidth: width,
+                containerHeight: height,
+                data: data,
+                theme: theme
+            }));
+        });
+    };
+
+    return PieLegends;
+}(React.Component);
+
+PieLegends.propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    arcs: PropTypes.arrayOf(arcPropType).isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    legends: PropTypes.arrayOf(PropTypes.shape(legends.LegendPropShape)).isRequired,
+    theme: core.themePropType.isRequired
+};
+
+
+var enhance$2 = function enhance(Component) {
+    return compose(withPropsOnChange(['arcs'], function (_ref) {
+        var arcs = _ref.arcs;
+        return {
+            data: arcs.map(function (arc) {
+                return {
+                    id: arc.data.id,
+                    label: arc.data.id,
+                    color: arc.color,
+                    fill: arc.fill
+                };
+            })
+        };
+    }), pure)(Component);
+};
+
+var PieLegends$1 = setDisplayName('PieLegends')(enhance$2(PieLegends));
+
+var Pie = function (_Component) {
+    inherits(Pie, _Component);
+
+    function Pie() {
+        classCallCheck(this, Pie);
+        return possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    Pie.prototype.render = function render() {
+        var _props = this.props,
+            data = _props.data,
+            sortByValue = _props.sortByValue,
+            startAngle = _props.startAngle,
+            endAngle = _props.endAngle,
+            padAngle = _props.padAngle,
+            fit = _props.fit,
+            innerRadius = _props.innerRadius,
+            cornerRadius = _props.cornerRadius,
+            margin = _props.margin,
+            width = _props.width,
+            height = _props.height,
+            outerWidth = _props.outerWidth,
+            outerHeight = _props.outerHeight,
+            colors = _props.colors,
+            colorBy = _props.colorBy,
+            borderWidth = _props.borderWidth,
+            _borderColor = _props.borderColor,
+            enableRadialLabels = _props.enableRadialLabels,
+            getRadialLabel = _props.getRadialLabel,
+            radialLabelsSkipAngle = _props.radialLabelsSkipAngle,
+            radialLabelsLinkOffset = _props.radialLabelsLinkOffset,
+            radialLabelsLinkDiagonalLength = _props.radialLabelsLinkDiagonalLength,
+            radialLabelsLinkHorizontalLength = _props.radialLabelsLinkHorizontalLength,
+            radialLabelsLinkStrokeWidth = _props.radialLabelsLinkStrokeWidth,
+            radialLabelsTextXOffset = _props.radialLabelsTextXOffset,
+            radialLabelsTextColor = _props.radialLabelsTextColor,
+            radialLabelsLinkColor = _props.radialLabelsLinkColor,
+            enableSlicesLabels = _props.enableSlicesLabels,
+            getSliceLabel = _props.getSliceLabel,
+            slicesLabelsSkipAngle = _props.slicesLabelsSkipAngle,
+            slicesLabelsTextColor = _props.slicesLabelsTextColor,
+            theme = _props.theme,
+            defs = _props.defs,
+            fill = _props.fill,
+            isInteractive = _props.isInteractive,
+            onClick = _props.onClick,
+            onMouseEnter = _props.onMouseEnter,
+            onMouseLeave = _props.onMouseLeave,
+            tooltipFormat = _props.tooltipFormat,
+            tooltip = _props.tooltip,
+            legends$$1 = _props.legends;
+
+
+        var borderColor = core.getInheritedColorGenerator(_borderColor);
+
+        return React__default.createElement(
+            PieLayout$1,
+            {
+                width: width,
+                height: height,
+                data: data,
+                sortByValue: sortByValue,
+                startAngle: startAngle,
+                endAngle: endAngle,
+                fit: fit,
+                padAngle: padAngle,
+                innerRadius: innerRadius,
+                cornerRadius: cornerRadius,
+                colors: colors,
+                colorBy: colorBy
+            },
+            function (_ref) {
+                var centerX = _ref.centerX,
+                    centerY = _ref.centerY,
+                    radius = _ref.radius,
+                    innerRadius = _ref.innerRadius,
+                    arcs = _ref.arcs,
+                    arcGenerator = _ref.arcGenerator;
+
+                var boundDefs = core.bindDefs(defs, arcs, fill, {
+                    dataKey: 'data'
+                });
+
+                return React__default.createElement(
+                    core.Container,
+                    { isInteractive: isInteractive, theme: theme },
+                    function (_ref2) {
+                        var showTooltip = _ref2.showTooltip,
+                            hideTooltip = _ref2.hideTooltip;
+                        return React__default.createElement(
+                            core.SvgWrapper,
+                            {
+                                width: outerWidth,
+                                height: outerHeight,
+                                margin: margin,
+                                defs: boundDefs,
+                                theme: theme
+                            },
+                            React__default.createElement(
+                                'g',
+                                { transform: 'translate(' + centerX + ',' + centerY + ')' },
+                                arcs.map(function (arc) {
+                                    return React__default.createElement(PieSlice$1, {
+                                        key: arc.data.id,
+                                        data: arc.data,
+                                        path: arcGenerator(arc),
+                                        color: arc.color,
+                                        fill: arc.fill ? arc.fill : arc.color,
+                                        borderWidth: borderWidth,
+                                        borderColor: borderColor(arc),
+                                        showTooltip: showTooltip,
+                                        hideTooltip: hideTooltip,
+                                        tooltipFormat: tooltipFormat,
+                                        tooltip: tooltip,
+                                        onClick: onClick,
+                                        onMouseEnter: onMouseEnter,
+                                        onMouseLeave: onMouseLeave,
+                                        theme: theme
+                                    });
+                                }),
+                                enableRadialLabels && React__default.createElement(PieRadialLabels, {
+                                    arcs: arcs,
+                                    radius: radius,
+                                    label: getRadialLabel,
+                                    skipAngle: radialLabelsSkipAngle,
+                                    linkOffset: radialLabelsLinkOffset,
+                                    linkDiagonalLength: radialLabelsLinkDiagonalLength,
+                                    linkHorizontalLength: radialLabelsLinkHorizontalLength,
+                                    linkStrokeWidth: radialLabelsLinkStrokeWidth,
+                                    textXOffset: radialLabelsTextXOffset,
+                                    textColor: core.getInheritedColorGenerator(radialLabelsTextColor, 'labels.text.fill'),
+                                    linkColor: core.getInheritedColorGenerator(radialLabelsLinkColor, 'axis.ticks.line.stroke'),
+                                    theme: theme
+                                }),
+                                enableSlicesLabels && React__default.createElement(PieSlicesLabels, {
+                                    arcs: arcs,
+                                    radius: radius,
+                                    innerRadius: innerRadius,
+                                    theme: theme,
+                                    label: getSliceLabel,
+                                    skipAngle: slicesLabelsSkipAngle,
+                                    textColor: core.getInheritedColorGenerator(slicesLabelsTextColor, 'labels.text.fill')
+                                })
+                            ),
+                            React__default.createElement(PieLegends$1, {
+                                width: width,
+                                height: height,
+                                arcs: arcs,
+                                legends: legends$$1,
+                                theme: theme
+                            })
+                        );
+                    }
+                );
+            }
+        );
+    };
+
+    return Pie;
+}(React.Component);
+
+Pie.propTypes = PiePropTypes;
+
+
+var enhance$3 = function enhance$$1(Component) {
+    return compose(defaultProps(PieDefaultProps), core.withTheme(), core.withDimensions(), withPropsOnChange(['radialLabel'], function (_ref3) {
+        var radialLabel = _ref3.radialLabel;
+        return {
+            getRadialLabel: core.getLabelGenerator(radialLabel)
+        };
+    }), withPropsOnChange(['sliceLabel'], function (_ref4) {
+        var sliceLabel = _ref4.sliceLabel;
+        return {
+            getSliceLabel: core.getLabelGenerator(sliceLabel)
+        };
+    }), pure)(Component);
+};
+
+var Pie$1 = setDisplayName('Pie')(enhance$3(Pie));
+
+var ResponsivePie = function ResponsivePie(props) {
+    return React__default.createElement(
+        core.ResponsiveWrapper,
+        null,
+        function (_ref) {
+            var width = _ref.width,
+                height = _ref.height;
+            return React__default.createElement(Pie$1, _extends({ width: width, height: height }, props));
+        }
+    );
+};
+
+var enhance$4 = (function (Component) {
+    return compose(defaultProps(PieDefaultProps), core.withTheme(), core.withDimensions(), pure)(Component);
+});
+
+var drawSliceLabels = function drawSliceLabels(ctx, arcs, _ref) {
+    var arcGenerator = _ref.arcGenerator,
+        getLabel = _ref.getLabel,
+        skipAngle = _ref.skipAngle,
+        getTextColor = _ref.getTextColor,
+        theme = _ref.theme;
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = theme.labels.text.fontSize + 'px sans-serif';
+
+    arcs.filter(function (arc) {
+        return skipAngle === 0 || arc.angleDeg > skipAngle;
+    }).forEach(function (arc) {
+        var _arcGenerator$centroi = arcGenerator.centroid(arc),
+            centroidX = _arcGenerator$centroi[0],
+            centroidY = _arcGenerator$centroi[1];
+
+        var sliceLabel = getLabel(arc.data);
+        var textColor = getTextColor(arc, theme);
+
+        ctx.save();
+        ctx.translate(centroidX, centroidY);
+        ctx.fillStyle = textColor;
+        ctx.fillText(sliceLabel, 0, 0);
+        ctx.restore();
+    });
+};
+
+var drawRadialLabels = function drawRadialLabels(ctx, arcs, _ref2) {
+    var radius = _ref2.radius,
+        getLabel = _ref2.getLabel,
+        skipAngle = _ref2.skipAngle,
+        linkOffset = _ref2.linkOffset,
+        linkDiagonalLength = _ref2.linkDiagonalLength,
+        linkHorizontalLength = _ref2.linkHorizontalLength,
+        linkStrokeWidth = _ref2.linkStrokeWidth,
+        textXOffset = _ref2.textXOffset,
+        getTextColor = _ref2.getTextColor,
+        getLinkColor = _ref2.getLinkColor,
+        theme = _ref2.theme;
+
+    var radialLabels = computeRadialLabels(arcs, {
+        getLabel: getLabel,
+        radius: radius,
+        skipAngle: skipAngle,
+        linkOffset: linkOffset,
+        linkDiagonalLength: linkDiagonalLength,
+        linkHorizontalLength: linkHorizontalLength,
+        textXOffset: textXOffset
+    });
+
+    ctx.textBaseline = 'middle';
+    ctx.font = theme.labels.text.fontSize + 'px sans-serif';
+
+    radialLabels.forEach(function (label) {
+        var dataWithColor = _extends({}, label.arc.data, {
+            color: label.arc.color
+        });
+
+        ctx.save();
+        ctx.translate(label.position.x, label.position.y);
+        ctx.fillStyle = getTextColor(dataWithColor, theme);
+        ctx.textAlign = core.textPropsByEngine.canvas.align[label.align];
+        ctx.fillText(label.text, 0, 0);
+        ctx.restore();
+
+        ctx.beginPath();
+        ctx.strokeStyle = getLinkColor(dataWithColor, theme);
+        ctx.lineWidth = linkStrokeWidth;
+        label.line.forEach(function (point, index) {
+            if (index === 0) ctx.moveTo(point.x, point.y);else ctx.lineTo(point.x, point.y);
+        });
+        if (linkStrokeWidth > 0) ctx.stroke();
+    });
+};
+
+var PieTooltip = function PieTooltip(_ref) {
+    var data = _ref.data,
+        color = _ref.color,
+        tooltipFormat = _ref.tooltipFormat,
+        tooltip = _ref.tooltip,
+        theme = _ref.theme;
+
+    return React__default.createElement(core.BasicTooltip, {
+        id: data.label,
+        value: data.value,
+        enableChip: true,
+        color: color,
+        theme: theme,
+        format: tooltipFormat,
+        renderContent: typeof tooltip === 'function' ? tooltip.bind(null, _extends({ color: color }, data)) : null
+    });
+};
+
+PieTooltip.propTypes = {
+    data: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        value: PropTypes.number.isRequired
+    }).isRequired,
+    color: PropTypes.string.isRequired,
+    tooltipFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    tooltip: PropTypes.func,
+    theme: PropTypes.shape({
+        tooltip: PropTypes.shape({}).isRequired
+    }).isRequired
+};
+
+var PieTooltip$1 = pure(PieTooltip);
+
+var PieCanvasRenderer = function (_Component) {
+    inherits(PieCanvasRenderer, _Component);
+
+    function PieCanvasRenderer() {
+        var _temp, _this, _ret;
+
+        classCallCheck(this, PieCanvasRenderer);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.getArcFromMouse = function (event) {
+            var _getRelativeCursor = core.getRelativeCursor(_this.surface, event),
+                x = _getRelativeCursor[0],
+                y = _getRelativeCursor[1];
+
+            var _this$props = _this.props,
+                centerX = _this$props.centerX,
+                centerY = _this$props.centerY,
+                margin = _this$props.margin,
+                radius = _this$props.radius,
+                innerRadius = _this$props.innerRadius,
+                arcs = _this$props.arcs;
+
+
+            return core.getHoveredArc(margin.left + centerX, margin.top + centerY, radius, innerRadius, arcs, x, y);
+        }, _this.handleMouseHover = function (showTooltip, hideTooltip) {
+            return function (event) {
+                if (_this.props.isInteractive !== true) return;
+
+                var arc = _this.getArcFromMouse(event);
+                if (arc) {
+                    showTooltip(React__default.createElement(PieTooltip$1, { data: arc.data, color: arc.color, theme: _this.props.theme }), event);
+                } else {
+                    hideTooltip();
+                }
+            };
+        }, _this.handleMouseLeave = function (hideTooltip) {
+            return function () {
+                if (_this.props.isInteractive !== true) return;
+
+                hideTooltip();
+            };
+        }, _this.handleClick = function (event) {
+            var arc = _this.getArcFromMouse(event);
+            if (arc) _this.props.onClick(arc.data, event);
+        }, _temp), possibleConstructorReturn(_this, _ret);
+    }
+
+    PieCanvasRenderer.prototype.componentDidMount = function componentDidMount() {
+        this.ctx = this.surface.getContext('2d');
+        this.draw(this.props);
+    };
+
+    PieCanvasRenderer.prototype.shouldComponentUpdate = function shouldComponentUpdate(props) {
+        // only update if the DOM needs to be updated
+        if (this.props.outerWidth !== props.outerWidth || this.props.outerHeight !== props.outerHeight || this.props.isInteractive !== props.isInteractive || this.props.theme !== props.theme) {
+            return true;
+        }
+
+        this.draw(props);
+        return false;
+    };
+
+    PieCanvasRenderer.prototype.componentDidUpdate = function componentDidUpdate() {
+        this.ctx = this.surface.getContext('2d');
+        this.draw(this.props);
+    };
+
+    PieCanvasRenderer.prototype.draw = function draw(props) {
+        var _this2 = this;
+
+        var arcs = props.arcs,
+            arcGenerator = props.arcGenerator,
+            width = props.width,
+            height = props.height,
+            centerX = props.centerX,
+            centerY = props.centerY,
+            radius = props.radius,
+            outerWidth = props.outerWidth,
+            outerHeight = props.outerHeight,
+            pixelRatio = props.pixelRatio,
+            margin = props.margin,
+            borderWidth = props.borderWidth,
+            borderColor = props.borderColor,
+            enableSlicesLabels = props.enableSlicesLabels,
+            enableRadialLabels = props.enableRadialLabels,
+            legends$$1 = props.legends,
+            theme = props.theme;
+
+
+        this.surface.width = outerWidth * pixelRatio;
+        this.surface.height = outerHeight * pixelRatio;
+
+        this.ctx.scale(pixelRatio, pixelRatio);
+        this.ctx.fillStyle = theme.background;
+        this.ctx.fillRect(0, 0, outerWidth, outerHeight);
+        this.ctx.save();
+        this.ctx.translate(margin.left, margin.top);
+
+        arcGenerator.context(this.ctx);
+
+        this.ctx.save();
+        this.ctx.translate(centerX, centerY);
+
+        var getBorderColor = core.getInheritedColorGenerator(borderColor);
+
+        arcs.forEach(function (arc) {
+            _this2.ctx.beginPath();
+            _this2.ctx.fillStyle = arc.color;
+            _this2.ctx.strokeStyle = getBorderColor(_extends({}, arc.data, { color: arc.color }));
+            _this2.ctx.lineWidth = borderWidth;
+            arcGenerator(arc);
+            _this2.ctx.fill();
+            if (borderWidth > 0) _this2.ctx.stroke();
+        });
+
+        if (enableSlicesLabels === true) {
+            var sliceLabel = props.sliceLabel,
+                slicesLabelsSkipAngle = props.slicesLabelsSkipAngle,
+                slicesLabelsTextColor = props.slicesLabelsTextColor;
+
+
+            drawSliceLabels(this.ctx, arcs, {
+                arcGenerator: arcGenerator,
+                skipAngle: slicesLabelsSkipAngle,
+                getLabel: core.getLabelGenerator(sliceLabel),
+                getTextColor: core.getInheritedColorGenerator(slicesLabelsTextColor, 'labels.text.fill'),
+                theme: theme
+            });
+        }
+
+        if (enableRadialLabels === true) {
+            var radialLabel = props.radialLabel,
+                radialLabelsSkipAngle = props.radialLabelsSkipAngle,
+                radialLabelsLinkOffset = props.radialLabelsLinkOffset,
+                radialLabelsLinkStrokeWidth = props.radialLabelsLinkStrokeWidth,
+                radialLabelsLinkDiagonalLength = props.radialLabelsLinkDiagonalLength,
+                radialLabelsLinkHorizontalLength = props.radialLabelsLinkHorizontalLength,
+                radialLabelsTextXOffset = props.radialLabelsTextXOffset,
+                radialLabelsTextColor = props.radialLabelsTextColor,
+                radialLabelsLinkColor = props.radialLabelsLinkColor;
+
+
+            drawRadialLabels(this.ctx, arcs, {
+                radius: radius,
+                getLabel: core.getLabelGenerator(radialLabel),
+                skipAngle: radialLabelsSkipAngle,
+                linkOffset: radialLabelsLinkOffset,
+                linkDiagonalLength: radialLabelsLinkDiagonalLength,
+                linkHorizontalLength: radialLabelsLinkHorizontalLength,
+                linkStrokeWidth: radialLabelsLinkStrokeWidth,
+                textXOffset: radialLabelsTextXOffset,
+                getTextColor: core.getInheritedColorGenerator(radialLabelsTextColor, 'labels.text.fill'),
+                getLinkColor: core.getInheritedColorGenerator(radialLabelsLinkColor, 'axis.ticks.line.stroke'),
+                theme: theme
+            });
+        }
+
+        this.ctx.restore();
+
+        legends$$1.forEach(function (legend) {
+            legends.renderLegendToCanvas(_this2.ctx, _extends({}, legend, {
+                data: arcs.map(function (arc) {
+                    return {
+                        id: arc.data.id,
+                        label: arc.data.id,
+                        color: arc.color
+                    };
+                }),
+                containerWidth: width,
+                containerHeight: height
+            }));
+        });
+    };
+
+    PieCanvasRenderer.prototype.render = function render() {
+        var _this3 = this;
+
+        var _props = this.props,
+            outerWidth = _props.outerWidth,
+            outerHeight = _props.outerHeight,
+            pixelRatio = _props.pixelRatio,
+            isInteractive = _props.isInteractive,
+            theme = _props.theme;
+
+
+        return React__default.createElement(
+            core.Container,
+            { isInteractive: isInteractive, theme: theme },
+            function (_ref) {
+                var showTooltip = _ref.showTooltip,
+                    hideTooltip = _ref.hideTooltip;
+                return React__default.createElement('canvas', {
+                    ref: function ref(surface) {
+                        _this3.surface = surface;
+                    },
+                    width: outerWidth * pixelRatio,
+                    height: outerHeight * pixelRatio,
+                    style: {
+                        width: outerWidth,
+                        height: outerHeight
+                    },
+                    onMouseEnter: _this3.handleMouseHover(showTooltip, hideTooltip),
+                    onMouseMove: _this3.handleMouseHover(showTooltip, hideTooltip),
+                    onMouseLeave: _this3.handleMouseLeave(hideTooltip),
+                    onClick: _this3.handleClick
+                });
+            }
+        );
+    };
+
+    return PieCanvasRenderer;
+}(React.Component);
+
+PieCanvasRenderer.propTypes = {
+    arcs: PropTypes.arrayOf(arcPropType).isRequired,
+    arcGenerator: PropTypes.func.isRequired,
+
+    // resolution
+    pixelRatio: PropTypes.number.isRequired,
+
+    // dimensions/layout
+    outerWidth: PropTypes.number.isRequired,
+    outerHeight: PropTypes.number.isRequired,
+    centerX: PropTypes.number.isRequired,
+    centerY: PropTypes.number.isRequired,
+    margin: PropTypes.object.isRequired,
+    radius: PropTypes.number.isRequired,
+    innerRadius: PropTypes.number.isRequired,
+
+    // interactivity
+    isInteractive: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
+
+    // theming
+    theme: PropTypes.object.isRequired
+};
+
+var PieCanvas = function (_Component) {
+    inherits(PieCanvas, _Component);
+
+    function PieCanvas() {
+        classCallCheck(this, PieCanvas);
+        return possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    PieCanvas.prototype.render = function render() {
+        var _props = this.props,
+            data = _props.data,
+            sortByValue = _props.sortByValue,
+            startAngle = _props.startAngle,
+            endAngle = _props.endAngle,
+            fit = _props.fit,
+            padAngle = _props.padAngle,
+            innerRadius = _props.innerRadius,
+            cornerRadius = _props.cornerRadius,
+            width = _props.width,
+            height = _props.height,
+            colors = _props.colors,
+            colorBy = _props.colorBy,
+            topProps = objectWithoutProperties(_props, ['data', 'sortByValue', 'startAngle', 'endAngle', 'fit', 'padAngle', 'innerRadius', 'cornerRadius', 'width', 'height', 'colors', 'colorBy']);
+
+
+        return React__default.createElement(
+            PieLayout$1,
+            {
+                width: width,
+                height: height,
+                data: data,
+                sortByValue: sortByValue,
+                startAngle: startAngle,
+                endAngle: endAngle,
+                fit: fit,
+                padAngle: padAngle,
+                innerRadius: innerRadius,
+                cornerRadius: cornerRadius,
+                colors: colors,
+                colorBy: colorBy
+            },
+            function (props) {
+                return React__default.createElement(PieCanvasRenderer, _extends({}, topProps, props));
+            }
+        );
+    };
+
+    return PieCanvas;
+}(React.Component);
+
+PieCanvas.propTypes = PiePropTypes;
+
+
+var PieCanvas$1 = setDisplayName('PieCanvas')(enhance$4(PieCanvas));
+
+var ResponsivePieCanvas = function ResponsivePieCanvas(props) {
+    return React__default.createElement(
+        core.ResponsiveWrapper,
+        null,
+        function (_ref) {
+            var width = _ref.width,
+                height = _ref.height;
+            return React__default.createElement(PieCanvas$1, _extends({ width: width, height: height }, props));
+        }
+    );
+};
+
+exports.PieLayout = PieLayout$1;
+exports.Pie = Pie$1;
+exports.ResponsivePie = ResponsivePie;
+exports.PieCanvas = PieCanvas$1;
+exports.ResponsivePieCanvas = ResponsivePieCanvas;
+exports.arcPropType = arcPropType;
+exports.PiePropTypes = PiePropTypes;
+exports.PieDefaultProps = PieDefaultProps;
+
+
+/***/ }),
+
+/***/ "./node_modules/@nivo/pie/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/@nivo/pie/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./cjs/nivo-pie */ "./node_modules/@nivo/pie/cjs/nivo-pie.js")
 
 
 /***/ }),
@@ -26441,49 +24567,6 @@ module.exports = baseDifference;
 
 /***/ }),
 
-/***/ "./node_modules/lodash/_baseExtremum.js":
-/*!**********************************************!*\
-  !*** ./node_modules/lodash/_baseExtremum.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isSymbol = __webpack_require__(/*! ./isSymbol */ "./node_modules/lodash/isSymbol.js");
-
-/**
- * The base implementation of methods like `_.max` and `_.min` which accepts a
- * `comparator` to determine the extremum value.
- *
- * @private
- * @param {Array} array The array to iterate over.
- * @param {Function} iteratee The iteratee invoked per iteration.
- * @param {Function} comparator The comparator used to compare values.
- * @returns {*} Returns the extremum value.
- */
-function baseExtremum(array, iteratee, comparator) {
-  var index = -1,
-      length = array.length;
-
-  while (++index < length) {
-    var value = array[index],
-        current = iteratee(value);
-
-    if (current != null && (computed === undefined
-          ? (current === current && !isSymbol(current))
-          : comparator(current, computed)
-        )) {
-      var computed = current,
-          result = value;
-    }
-  }
-  return result;
-}
-
-module.exports = baseExtremum;
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/_baseFindIndex.js":
 /*!***********************************************!*\
   !*** ./node_modules/lodash/_baseFindIndex.js ***!
@@ -26696,31 +24779,6 @@ function baseGetTag(value) {
 }
 
 module.exports = baseGetTag;
-
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseGt.js":
-/*!****************************************!*\
-  !*** ./node_modules/lodash/_baseGt.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.gt` which doesn't coerce arguments.
- *
- * @private
- * @param {*} value The value to compare.
- * @param {*} other The other value to compare.
- * @returns {boolean} Returns `true` if `value` is greater than `other`,
- *  else `false`.
- */
-function baseGt(value, other) {
-  return value > other;
-}
-
-module.exports = baseGt;
 
 
 /***/ }),
@@ -27200,31 +25258,6 @@ module.exports = baseLodash;
 
 /***/ }),
 
-/***/ "./node_modules/lodash/_baseLt.js":
-/*!****************************************!*\
-  !*** ./node_modules/lodash/_baseLt.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.lt` which doesn't coerce arguments.
- *
- * @private
- * @param {*} value The value to compare.
- * @param {*} other The other value to compare.
- * @returns {boolean} Returns `true` if `value` is less than `other`,
- *  else `false`.
- */
-function baseLt(value, other) {
-  return value < other;
-}
-
-module.exports = baseLt;
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/_baseMerge.js":
 /*!*******************************************!*\
   !*** ./node_modules/lodash/_baseMerge.js ***!
@@ -27450,45 +25483,6 @@ function basePickBy(object, paths, predicate) {
 }
 
 module.exports = basePickBy;
-
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_baseRange.js":
-/*!*******************************************!*\
-  !*** ./node_modules/lodash/_baseRange.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeCeil = Math.ceil,
-    nativeMax = Math.max;
-
-/**
- * The base implementation of `_.range` and `_.rangeRight` which doesn't
- * coerce arguments.
- *
- * @private
- * @param {number} start The start of the range.
- * @param {number} end The end of the range.
- * @param {number} step The value to increment or decrement by.
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {Array} Returns the range of numbers.
- */
-function baseRange(start, end, step, fromRight) {
-  var index = -1,
-      length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
-      result = Array(length);
-
-  while (length--) {
-    result[fromRight ? length : ++index] = start;
-    start += step;
-  }
-  return result;
-}
-
-module.exports = baseRange;
 
 
 /***/ }),
@@ -28515,47 +26509,6 @@ function createPartial(func, bitmask, thisArg, partials) {
 }
 
 module.exports = createPartial;
-
-
-/***/ }),
-
-/***/ "./node_modules/lodash/_createRange.js":
-/*!*********************************************!*\
-  !*** ./node_modules/lodash/_createRange.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseRange = __webpack_require__(/*! ./_baseRange */ "./node_modules/lodash/_baseRange.js"),
-    isIterateeCall = __webpack_require__(/*! ./_isIterateeCall */ "./node_modules/lodash/_isIterateeCall.js"),
-    toFinite = __webpack_require__(/*! ./toFinite */ "./node_modules/lodash/toFinite.js");
-
-/**
- * Creates a `_.range` or `_.rangeRight` function.
- *
- * @private
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {Function} Returns the new range function.
- */
-function createRange(fromRight) {
-  return function(start, end, step) {
-    if (step && typeof step != 'number' && isIterateeCall(start, end, step)) {
-      end = step = undefined;
-    }
-    // Ensure the sign of `-0` is preserved.
-    start = toFinite(start);
-    if (end === undefined) {
-      end = start;
-      start = 0;
-    } else {
-      end = toFinite(end);
-    }
-    step = step === undefined ? (start < end ? 1 : -1) : toFinite(step);
-    return baseRange(start, end, step, fromRight);
-  };
-}
-
-module.exports = createRange;
 
 
 /***/ }),
@@ -31655,50 +29608,6 @@ function flatten(array) {
 }
 
 module.exports = flatten;
-
-
-/***/ }),
-
-/***/ "./node_modules/lodash/flattenDepth.js":
-/*!*********************************************!*\
-  !*** ./node_modules/lodash/flattenDepth.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseFlatten = __webpack_require__(/*! ./_baseFlatten */ "./node_modules/lodash/_baseFlatten.js"),
-    toInteger = __webpack_require__(/*! ./toInteger */ "./node_modules/lodash/toInteger.js");
-
-/**
- * Recursively flatten `array` up to `depth` times.
- *
- * @static
- * @memberOf _
- * @since 4.4.0
- * @category Array
- * @param {Array} array The array to flatten.
- * @param {number} [depth=1] The maximum recursion depth.
- * @returns {Array} Returns the new flattened array.
- * @example
- *
- * var array = [1, [2, [3, [4]], 5]];
- *
- * _.flattenDepth(array, 1);
- * // => [1, 2, [3, [4]], 5]
- *
- * _.flattenDepth(array, 2);
- * // => [1, 2, 3, [4], 5]
- */
-function flattenDepth(array, depth) {
-  var length = array == null ? 0 : array.length;
-  if (!length) {
-    return [];
-  }
-  depth = depth === undefined ? 1 : toInteger(depth);
-  return baseFlatten(array, depth);
-}
-
-module.exports = flattenDepth;
 
 
 /***/ }),
@@ -49742,46 +47651,6 @@ module.exports = last;
 
 /***/ }),
 
-/***/ "./node_modules/lodash/max.js":
-/*!************************************!*\
-  !*** ./node_modules/lodash/max.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseExtremum = __webpack_require__(/*! ./_baseExtremum */ "./node_modules/lodash/_baseExtremum.js"),
-    baseGt = __webpack_require__(/*! ./_baseGt */ "./node_modules/lodash/_baseGt.js"),
-    identity = __webpack_require__(/*! ./identity */ "./node_modules/lodash/identity.js");
-
-/**
- * Computes the maximum value of `array`. If `array` is empty or falsey,
- * `undefined` is returned.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Math
- * @param {Array} array The array to iterate over.
- * @returns {*} Returns the maximum value.
- * @example
- *
- * _.max([4, 2, 8, 6]);
- * // => 8
- *
- * _.max([]);
- * // => undefined
- */
-function max(array) {
-  return (array && array.length)
-    ? baseExtremum(array, identity, baseGt)
-    : undefined;
-}
-
-module.exports = max;
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/memoize.js":
 /*!****************************************!*\
   !*** ./node_modules/lodash/memoize.js ***!
@@ -49916,46 +47785,6 @@ module.exports = merge;
 
 /***/ }),
 
-/***/ "./node_modules/lodash/min.js":
-/*!************************************!*\
-  !*** ./node_modules/lodash/min.js ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseExtremum = __webpack_require__(/*! ./_baseExtremum */ "./node_modules/lodash/_baseExtremum.js"),
-    baseLt = __webpack_require__(/*! ./_baseLt */ "./node_modules/lodash/_baseLt.js"),
-    identity = __webpack_require__(/*! ./identity */ "./node_modules/lodash/identity.js");
-
-/**
- * Computes the minimum value of `array`. If `array` is empty or falsey,
- * `undefined` is returned.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Math
- * @param {Array} array The array to iterate over.
- * @returns {*} Returns the minimum value.
- * @example
- *
- * _.min([4, 2, 8, 6]);
- * // => 2
- *
- * _.min([]);
- * // => undefined
- */
-function min(array) {
-  return (array && array.length)
-    ? baseExtremum(array, identity, baseLt)
-    : undefined;
-}
-
-module.exports = min;
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash/noop.js":
 /*!*************************************!*\
   !*** ./node_modules/lodash/noop.js ***!
@@ -50076,63 +47905,6 @@ var pick = flatRest(function(object, paths) {
 });
 
 module.exports = pick;
-
-
-/***/ }),
-
-/***/ "./node_modules/lodash/range.js":
-/*!**************************************!*\
-  !*** ./node_modules/lodash/range.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var createRange = __webpack_require__(/*! ./_createRange */ "./node_modules/lodash/_createRange.js");
-
-/**
- * Creates an array of numbers (positive and/or negative) progressing from
- * `start` up to, but not including, `end`. A step of `-1` is used if a negative
- * `start` is specified without an `end` or `step`. If `end` is not specified,
- * it's set to `start` with `start` then set to `0`.
- *
- * **Note:** JavaScript follows the IEEE-754 standard for resolving
- * floating-point values which can produce unexpected results.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {number} [start=0] The start of the range.
- * @param {number} end The end of the range.
- * @param {number} [step=1] The value to increment or decrement by.
- * @returns {Array} Returns the range of numbers.
- * @see _.inRange, _.rangeRight
- * @example
- *
- * _.range(4);
- * // => [0, 1, 2, 3]
- *
- * _.range(-4);
- * // => [0, -1, -2, -3]
- *
- * _.range(1, 5);
- * // => [1, 2, 3, 4]
- *
- * _.range(0, 20, 5);
- * // => [0, 5, 10, 15]
- *
- * _.range(0, -4, -1);
- * // => [0, -1, -2, -3]
- *
- * _.range(1, 4, 0);
- * // => [1, 1, 1]
- *
- * _.range(0);
- * // => []
- */
-var range = createRange();
-
-module.exports = range;
 
 
 /***/ }),
@@ -56898,33 +54670,6 @@ exports.default = shouldUpdate;
 
 /***/ }),
 
-/***/ "./node_modules/recompose/utils/mapValues.js":
-/*!***************************************************!*\
-  !*** ./node_modules/recompose/utils/mapValues.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var mapValues = function mapValues(obj, func) {
-  var result = {};
-  /* eslint-disable no-restricted-syntax */
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      result[key] = func(obj[key], key);
-    }
-  }
-  /* eslint-enable no-restricted-syntax */
-  return result;
-};
-
-exports.default = mapValues;
-
-/***/ }),
-
 /***/ "./node_modules/recompose/utils/pick.js":
 /*!**********************************************!*\
   !*** ./node_modules/recompose/utils/pick.js ***!
@@ -57078,114 +54823,6 @@ var withPropsOnChange = function withPropsOnChange(shouldMapOrKeys, propsMapper)
 };
 
 exports.default = withPropsOnChange;
-
-/***/ }),
-
-/***/ "./node_modules/recompose/withStateHandlers.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/recompose/withStateHandlers.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _setDisplayName = __webpack_require__(/*! ./setDisplayName */ "./node_modules/recompose/setDisplayName.js");
-
-var _setDisplayName2 = _interopRequireDefault(_setDisplayName);
-
-var _wrapDisplayName = __webpack_require__(/*! ./wrapDisplayName */ "./node_modules/recompose/wrapDisplayName.js");
-
-var _wrapDisplayName2 = _interopRequireDefault(_wrapDisplayName);
-
-var _shallowEqual = __webpack_require__(/*! ./shallowEqual */ "./node_modules/recompose/shallowEqual.js");
-
-var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
-
-var _mapValues = __webpack_require__(/*! ./utils/mapValues */ "./node_modules/recompose/utils/mapValues.js");
-
-var _mapValues2 = _interopRequireDefault(_mapValues);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var withStateHandlers = function withStateHandlers(initialState, stateUpdaters) {
-  return function (BaseComponent) {
-    var factory = (0, _react.createFactory)(BaseComponent);
-
-    var WithStateHandlers = function (_Component) {
-      _inherits(WithStateHandlers, _Component);
-
-      function WithStateHandlers() {
-        var _temp, _this, _ret;
-
-        _classCallCheck(this, WithStateHandlers);
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
-      }
-
-      WithStateHandlers.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps, nextState) {
-        var propsChanged = nextProps !== this.props;
-        // the idea is to skip render if stateUpdater handler return undefined
-        // this allows to create no state update handlers with access to state and props
-        var stateChanged = !(0, _shallowEqual2.default)(nextState, this.state);
-        return propsChanged || stateChanged;
-      };
-
-      WithStateHandlers.prototype.render = function render() {
-        return factory(_extends({}, this.props, this.state, this.stateUpdaters));
-      };
-
-      return WithStateHandlers;
-    }(_react.Component);
-
-    var _initialiseProps = function _initialiseProps() {
-      var _this2 = this;
-
-      this.state = typeof initialState === 'function' ? initialState(this.props) : initialState;
-      this.stateUpdaters = (0, _mapValues2.default)(stateUpdaters, function (handler) {
-        return function (mayBeEvent) {
-          for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-            args[_key2 - 1] = arguments[_key2];
-          }
-
-          // Having that functional form of setState can be called async
-          // we need to persist SyntheticEvent
-          if (mayBeEvent && typeof mayBeEvent.persist === 'function') {
-            mayBeEvent.persist();
-          }
-
-          _this2.setState(function (state, props) {
-            return handler(state, props).apply(undefined, [mayBeEvent].concat(args));
-          });
-        };
-      });
-    };
-
-    if (true) {
-      return (0, _setDisplayName2.default)((0, _wrapDisplayName2.default)(BaseComponent, 'withStateHandlers'))(WithStateHandlers);
-    }
-    return WithStateHandlers;
-  };
-};
-
-exports.default = withStateHandlers;
 
 /***/ }),
 
@@ -59904,9 +57541,9 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./pages/bar.js":
+/***/ "./pages/pie.js":
 /*!**********************!*\
-  !*** ./pages/bar.js ***!
+  !*** ./pages/pie.js ***!
   \**********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -59915,27 +57552,18 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_MyLayout_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/MyLayout.js */ "./components/MyLayout.js");
-/* harmony import */ var _components_horizontalBubbles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/horizontalBubbles */ "./components/horizontalBubbles.js");
-/* harmony import */ var _components_sectorBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/sectorBar */ "./components/sectorBar.js");
+/* harmony import */ var _components_MyLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/MyLayout */ "./components/MyLayout.js");
+/* harmony import */ var _components_Pie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Pie */ "./components/Pie.js");
 
 
 
-
-
-var Bar = function Bar(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MyLayout_js__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Secteurs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MyLayout__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Pie"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Type de structure"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       height: '500px'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_sectorBar__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, " Remarques : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Je ne sais pas comment trier dans l'ordre inverse (celui de la maquette)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Possibilit\xE9 de personnaliser les tooltips assez finement"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "En revanche pas possible (en tout cas je n'ai pas r\xE9ussi) de personnaliser les labels")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      height: '500px'
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Domaines / Tutelles"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_horizontalBubbles__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, " Remarques : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "ici on a g\xE9n\xE9r\xE9 le m\xEAme composant bulles plusieurs fois c\xF4te \xE0 c\xF4te. Sauf que comme les bulles sont responsives, elles faisaient toute la m\xEAme taille. Trick : g\xE9n\xE9rer une autre bulle blanche (invisible) \xE9talon de valeur fixe. On voit ainsi un tooltip vide quand on survole la bulle blanche. Autrement dit, le composant n'est pas tr\xE8s adapt\xE9 \xE0 l'utilisation qu'on veut en faire.")));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Bar);
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pie__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+});
     (function (Component, route) {
       if(!Component) return
       if (false) {}
@@ -59952,21 +57580,21 @@ var Bar = function Bar(props) {
           next.router.update(r, Component)
         }
       }
-    })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/bar")
+    })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/pie")
   
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
 
-/***/ 3:
+/***/ 7:
 /*!****************************!*\
-  !*** multi ./pages/bar.js ***!
+  !*** multi ./pages/pie.js ***!
   \****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__NEXT_REGISTER_PAGE('/bar', function() {
-module.exports = __webpack_require__(/*! ./pages/bar.js */"./pages/bar.js");
+__NEXT_REGISTER_PAGE('/pie', function() {
+module.exports = __webpack_require__(/*! ./pages/pie.js */"./pages/pie.js");
 
 return { page: module.exports.default }});
 
@@ -59983,5 +57611,5 @@ module.exports = dll_52339ab353c8e0db40da;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]));;
-//# sourceMappingURL=bar.js.map
+},[[7,"static/runtime/webpack.js"]]]));;
+//# sourceMappingURL=pie.js.map
