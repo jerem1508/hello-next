@@ -105,7 +105,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Bubble = function Bubble(props) {
-  console.log('bubble');
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nivo_circle_packing__WEBPACK_IMPORTED_MODULE_1__["ResponsiveBubble"], {
     root: {
       "id": "base",
